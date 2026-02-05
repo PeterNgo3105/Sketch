@@ -1,0 +1,21 @@
+\doxysection{CControl.\+h}
+\hypertarget{_c_control_8h_source}{}\label{_c_control_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}serial.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }CControl\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{class_serial}{Serial}}\ \doxymbox{\hyperlink{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}{\_com}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{enum}\ type\ \{DIGITAL\ =\ 0,\ ANALOG,\ SEVRO\};}
+\DoxyCodeLine{00022\ \ \ \ \ \doxymbox{\hyperlink{class_c_control}{CControl}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \doxymbox{\hyperlink{class_c_control}{\string~CControl}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}{init\_com}}(\textcolor{keywordtype}{int}\ comport);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}{get\_data}}(\textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{int}\ channel,\ \textcolor{keywordtype}{int}\&\ result);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}{set\_data}}(\textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{int}\ channel,\ \textcolor{keywordtype}{int}\ val);}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_c_control_aec258048f2002a3e1c00eb12445f84de}{get\_analog}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_a72a0a3dc4470181c0ff47532e98c981d}{get\_button}}(\textcolor{keywordtype}{bool}\ button);}
+\DoxyCodeLine{00077\ \};}
+
+\end{DoxyCode}

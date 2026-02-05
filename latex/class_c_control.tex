@@ -1,0 +1,168 @@
+\doxysection{CControl Class Reference}
+\hypertarget{class_c_control}{}\label{class_c_control}\index{CControl@{CControl}}
+
+
+This class is meant to sending commands set data to and get data from Comport of micro controller This class has a private varialbe "{} \+\_\+com"{} and a public variable "{}type"{}.  
+
+
+
+
+{\ttfamily \+\#include $<$CControl.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_control_a74f08c20ad22dca95a12faf46890c8d4}\label{class_c_control_a74f08c20ad22dca95a12faf46890c8d4} 
+enum {\bfseries type} \{ {\bfseries DIGITAL} = 0
+, {\bfseries ANALOG}
+, {\bfseries SEVRO}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}{init\+\_\+com}} (int comport)
+\begin{DoxyCompactList}\small\item\em Function init\+\_\+com is to open the comport. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}{get\+\_\+data}} (int type, int channel, int \&result)
+\begin{DoxyCompactList}\small\item\em Function get\+\_\+dat is to get value back from the controller. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}{set\+\_\+data}} (int type, int channel, int val)
+\begin{DoxyCompactList}\small\item\em Function set\+\_\+data is to send command to controller to do something. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_c_control_aec258048f2002a3e1c00eb12445f84de}{get\+\_\+analog}} (float value)
+\begin{DoxyCompactList}\small\item\em Function get\+\_\+analog is to convert 12 bits data to percentage. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_control_a72a0a3dc4470181c0ff47532e98c981d}{get\+\_\+button}} (bool button)
+\begin{DoxyCompactList}\small\item\em Function get\+\_\+button is to avoid debouncing when pressing button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_serial}{Serial}} \doxymbox{\hyperlink{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}{\+\_\+com}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is meant to sending commands set data to and get data from Comport of micro controller This class has a private varialbe "{} \+\_\+com"{} and a public variable "{}type"{}. 
+
+@\+Author:\+ Viet Thu Ngo, Student ID:\+ A0103762 Set:\+ S 
+
+\label{doc-func-members}
+\Hypertarget{class_c_control_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_control_aec258048f2002a3e1c00eb12445f84de}\index{CControl@{CControl}!get\_analog@{get\_analog}}
+\index{get\_analog@{get\_analog}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_analog()}{get\_analog()}}
+{\footnotesize\ttfamily \label{class_c_control_aec258048f2002a3e1c00eb12445f84de} 
+float CControl::\+get\+\_\+analog (\begin{DoxyParamCaption}\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Function get\+\_\+analog is to convert 12 bits data to percentage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & is calculate percentage of joystick position\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float value 
+\end{DoxyReturn}
+\Hypertarget{class_c_control_a72a0a3dc4470181c0ff47532e98c981d}\index{CControl@{CControl}!get\_button@{get\_button}}
+\index{get\_button@{get\_button}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_button()}{get\_button()}}
+{\footnotesize\ttfamily \label{class_c_control_a72a0a3dc4470181c0ff47532e98c981d} 
+bool CControl::\+get\+\_\+button (\begin{DoxyParamCaption}\item[{bool}]{button}{}\end{DoxyParamCaption})}
+
+
+
+Function get\+\_\+button is to avoid debouncing when pressing button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & is signal back from controler to avoid debouncing\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true or false 
+\end{DoxyReturn}
+\Hypertarget{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}\index{CControl@{CControl}!get\_data@{get\_data}}
+\index{get\_data@{get\_data}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_data()}{get\_data()}}
+{\footnotesize\ttfamily \label{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3} 
+bool CControl::\+get\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{type}{, }\item[{int}]{channel}{, }\item[{int \&}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Function get\+\_\+dat is to get value back from the controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & is to assign DIGITAL, ANALOG or SERVO. \\
+\hline
+{\em channel} & is to assign pin for microcontroller \\
+\hline
+{\em result} & is to get value back from controller\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true or false 
+\end{DoxyReturn}
+\Hypertarget{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}\index{CControl@{CControl}!init\_com@{init\_com}}
+\index{init\_com@{init\_com}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{init\_com()}{init\_com()}}
+{\footnotesize\ttfamily \label{class_c_control_a3d1384d0e1ee2a4a478a798b46457468} 
+void CControl::\+init\+\_\+com (\begin{DoxyParamCaption}\item[{int}]{comport}{}\end{DoxyParamCaption})}
+
+
+
+Function init\+\_\+com is to open the comport. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comport} & is port number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}\index{CControl@{CControl}!set\_data@{set\_data}}
+\index{set\_data@{set\_data}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{set\_data()}{set\_data()}}
+{\footnotesize\ttfamily \label{class_c_control_a13f557815616ef66a8f5dd4b725d8c32} 
+bool CControl::\+set\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{type}{, }\item[{int}]{channel}{, }\item[{int}]{val}{}\end{DoxyParamCaption})}
+
+
+
+Function set\+\_\+data is to send command to controller to do something. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & is to assign DIGITAL, ANALOG or SERVO. \\
+\hline
+{\em channel} & is to assign pin for microcontroller \\
+\hline
+{\em result} & is to set value to controller\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true or false 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_c_control_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}\index{CControl@{CControl}!\_com@{\_com}}
+\index{\_com@{\_com}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{\_com}{\_com}}
+{\footnotesize\ttfamily \label{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c} 
+\doxymbox{\hyperlink{class_serial}{Serial}} CControl::\+\+\_\+com\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}{\+\_\+com}} & is communication from \doxylink{class_serial}{Serial} to microcontroller \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+CControl.\+h\item 
+CControl.\+cpp\end{DoxyCompactItemize}
