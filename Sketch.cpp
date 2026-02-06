@@ -26,8 +26,8 @@ int y_val;
 int val = 1;
 int radian = 2;
 int thickness = 4;
-int x_offset = 110;
-int y_offset = 50;
+int x_offset = 150;
+int y_offset = 0;
 float speed = 5.0f;
 int dir_x, dir_y;
 
@@ -65,7 +65,7 @@ void CSketch::run() {
         else
          {
             GPIO();
-            update(); 
+            update();
             draw();   
             cv::waitKey(1);
         }
@@ -77,30 +77,23 @@ void CSketch::update(){
     if (control.get_button(_d_val)) {
         _reset = true;
     }
-  
+    _x_cursor = (((_Canva.size().width+100) * _x_percent) / 90);
+    _y_cursor =  (((_Canva.size().height) * (90 - _y_percent)) / 90);
     // _x_cursor inside canvas
-    if (_x_cursor - x_offset < radian) {
-        _x_cursor = radian + x_offset;
+    if (_x_cursor -x_offset   < 0) {
+        _x_cursor =  x_offset;
     }
-    if (_x_cursor - x_offset > _Canva.cols - radian) {
-        _x_cursor = _Canva.cols - radian + x_offset;
+    if (_x_cursor + x_offset > _Canva.cols) {
+        _x_cursor =x_offset + _Canva.cols ;
     }
     // _y_cursor inside canvas
-    if (_y_cursor - y_offset < radian) {
-        _y_cursor = radian + y_offset;
+    if (_y_cursor -y_offset < 0) {
+        _y_cursor = y_offset;
     }
-    if (_y_cursor - y_offset > _Canva.rows - radian) {
-        _y_cursor = _Canva.rows - radian + y_offset;
+    if (_y_cursor +y_offset > _Canva.rows) {
+        _y_cursor = _Canva.rows ;
     }
-
-    _x_cursor = ((_Canva.size().width +50) * _x_percent) / 80;
-    _y_cursor =  ((_Canva.size().height +100 ) * (90 - _y_percent)) / 90;
-    //cv::Mat Mini_Canva = _Canva / 10;
-    //_x_cursor = (Mini_Canva.size().width * _x_percent) / 100;
-    //_y_cursor = ((Mini_Canva.size().height) * (100 - _y_percent)) / 100;
-    //_x_cursor = ((_Canva.size().width)* static_cast<int>(control.get_analog(x_val)))/ 90;
-    //_y_cursor = ((_Canva.size().height) * (80 - static_cast<int>(control.get_analog(y_val))))/ 80;
-
+    
        
 }
 void CSketch::draw() {
@@ -108,7 +101,7 @@ void CSketch::draw() {
     
  
     
-     _point1 = cv::Point(_x_cursor + x_offset, _y_cursor - y_offset);
+     _point1 = cv::Point(_x_cursor - x_offset, _y_cursor + y_offset);
     
     
     
