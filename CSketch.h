@@ -17,6 +17,7 @@ public:
 	virtual void update();
 	virtual void draw();
 	void run();
+	void GPIO();
 	
 private:
 	/**
@@ -28,4 +29,9 @@ private:
 	int _y_cursor;
 	int _color = 0;
 	bool _reset = false;
+	int _d_val;
+	int _x_percent;
+	int _y_percent;
+	cv::Point _point1;
+	cv::Point _point2 = cv::Point(_Canva.size().width/2, _Canva.size().height/2);
 };

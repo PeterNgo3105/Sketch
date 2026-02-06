@@ -25,7 +25,7 @@ int x_val;
 int y_val;
 int val = 1;
 int radian = 2;
-int thickness = 2;
+int thickness = 4;
 int x_offset = 110;
 int y_offset = 50;
 float speed = 5.0f;
@@ -64,6 +64,7 @@ void CSketch::run() {
         }
         else
          {
+            GPIO();
             update(); 
             draw();   
             cv::waitKey(1);
@@ -72,34 +73,67 @@ void CSketch::run() {
     }
 }
 void CSketch::update(){
-    control.get_data(d_type, reset_channel, d_val);
-    if (control.get_button(d_val)) {
+    
+    if (control.get_button(_d_val)) {
         _reset = true;
     }
   
+    // _x_cursor inside canvas
+    if (_x_cursor - x_offset < radian) {
+        _x_cursor = radian + x_offset;
+    }
+    if (_x_cursor - x_offset > _Canva.cols - radian) {
+        _x_cursor = _Canva.cols - radian + x_offset;
+    }
+    // _y_cursor inside canvas
+    if (_y_cursor - y_offset < radian) {
+        _y_cursor = radian + y_offset;
+    }
+    if (_y_cursor - y_offset > _Canva.rows - radian) {
+        _y_cursor = _Canva.rows - radian + y_offset;
+    }
+
+    _x_cursor = ((_Canva.size().width +50) * _x_percent) / 80;
+    _y_cursor =  ((_Canva.size().height +100 ) * (90 - _y_percent)) / 90;
+    //cv::Mat Mini_Canva = _Canva / 10;
+    //_x_cursor = (Mini_Canva.size().width * _x_percent) / 100;
+    //_y_cursor = ((Mini_Canva.size().height) * (100 - _y_percent)) / 100;
+    //_x_cursor = ((_Canva.size().width)* static_cast<int>(control.get_analog(x_val)))/ 90;
+    //_y_cursor = ((_Canva.size().height) * (80 - static_cast<int>(control.get_analog(y_val))))/ 80;
+
+       
+}
+void CSketch::draw() {
+
     
+ 
+    
+     _point1 = cv::Point(_x_cursor + x_offset, _y_cursor - y_offset);
+    
+    
+    
+    if (_color == 0)
+        cv::line(_Canva, _point1, _point2, cv::Scalar(0, 0, 255), thickness, cv::LINE_AA);   
+    else if (_color ==1)
+        cv::line(_Canva, _point1, _point2, cv::Scalar(255, 0, 0), thickness, cv::LINE_AA);
+    else
+        cv::line(_Canva, _point1, _point2, cv::Scalar(0, 255, 0), thickness, cv::LINE_AA);
+    //point2 = point1;
+    _point2 = _point1;
+    cv::imshow(CANVAS_NAME, _Canva);
+    if (_reset) {
+        _Canva.setTo(cv::Scalar(0, 0, 0));
+        _reset = false;
+    }
+}
+void CSketch::GPIO() {
+    control.get_data(d_type, reset_channel, _d_val);
+
     control.get_data(type, x_channel, x_val);
     control.get_data(type, y_channel, y_val);
 
-    const int DEAD_ZONE = 2;  // You can adjust this threshold value
-    int x_analog = static_cast<int>(control.get_analog(x_val));
-    int y_analog = static_cast<int>(control.get_analog(y_val));
-
-    // If joystick is within dead zone, set it to 0 (neutral position)
-    if (abs(x_analog - 50) < DEAD_ZONE) x_analog = 50;
-    if (abs(y_analog - 50) < DEAD_ZONE) y_analog = 50;
-
-
-    dir_x = ((_Canva.size().width / 3) * (x_analog)) / 100;  // Normalized to -50 to +50 range
-    dir_y = ((_Canva.size().height / 3) * (100 - y_analog)) / 100;
-    //_x_cursor = dir_x;
-    //_y_cursor = dir_y;
-
-    _x_cursor = dir_x + ((_Canva.size().width - 50) * static_cast<int>(control.get_analog(x_val))) / 90;
-    _y_cursor = dir_y + ((_Canva.size().height - 100) * (90 - static_cast<int>(control.get_analog(y_val)))) / 90;
-   
-    //_x_cursor = ((_Canva.size().width)* static_cast<int>(control.get_analog(x_val)))/ 90;
-    //_y_cursor = ((_Canva.size().height) * (80 - static_cast<int>(control.get_analog(y_val))))/ 80;
+     _x_percent = static_cast<int>(control.get_analog(x_val));
+     _y_percent = static_cast<int>(control.get_analog(y_val));
 
     control.get_data(d_type, d_channel, d_val);
     if (control.get_button(d_val)) {
@@ -116,46 +150,15 @@ void CSketch::update(){
         control.set_data(d_type, r_channel, val);
     }
     else if (_color == 1)
-    {   
+    {
         control.set_data(d_type, r_channel, !val);
         control.set_data(d_type, b_channel, val);
     }
-        
+
     else
     {
         control.set_data(d_type, b_channel, !val);
         control.set_data(d_type, g_channel, val);
-    }      
-}
-void CSketch::draw() {
-    
-  
-    // _x_cursor inside canvas
-    if (_x_cursor - x_offset < radian) {
-        _x_cursor = radian + x_offset;
-    }
-    if (_x_cursor - x_offset > _Canva.cols - radian) {
-        _x_cursor = _Canva.cols - radian + x_offset;
-    }
-    // _y_cursor inside canvas
-    if (_y_cursor - y_offset < radian) {
-        _y_cursor = radian + y_offset;
-    }
-    if (_y_cursor - y_offset > _Canva.rows - radian) {
-        _y_cursor = _Canva.rows - radian + y_offset;
-    }
-    cv::Point center = cv::Point(_x_cursor - x_offset, _y_cursor - y_offset);
-    if (_color == 0) 
-        cv::line(_Canva,center, center, cv::Scalar(0, 0, 255), thickness, cv::LINE_AA);
-    else if (_color ==1)
-        cv::circle(_Canva, center, radian, cv::Scalar(255, 0, 0), thickness, cv::LINE_AA);
-    else
-        cv::circle(_Canva, center, radian, cv::Scalar(0, 255, 0), thickness, cv::LINE_AA);
-    
-    cv::imshow(CANVAS_NAME, _Canva);
-    if (_reset) {
-        _Canva.setTo(cv::Scalar(0, 0, 0));
-        _reset = false;
     }
 }
 
