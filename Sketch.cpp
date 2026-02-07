@@ -121,7 +121,7 @@ void CSketch::draw() {
 }
 void CSketch::GPIO() {
     control.get_data(d_type, reset_channel, _d_val);
-
+    
     control.get_data(type, x_channel, x_val);
     control.get_data(type, y_channel, y_val);
 
