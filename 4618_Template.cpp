@@ -29,9 +29,11 @@
 #include "Server.h"
 #include "CControl.h"
 #include "CSketch.h"
+#include "Pong.h"
 
 // Must include Windows.h after Winsock2.h, so Serial must be included after Client/Server
 #include "Serial.h" 
+#include "Pong.h"
 
 #define CANVAS_NAME "Display Image"
 
@@ -129,8 +131,8 @@ void do_image()
   // Draw 500 circles and dots on the image
   for (int i = 0; i < 500; i++)
   {
-    gui_position = cv::Point(10, 10);
-    cvui::window(im, gui_position.x, gui_position.y, 200, 40, "Image Test");
+    gui_position = cv::Point(50, 80);
+    cvui::window(im, gui_position.x, gui_position.y, 400, 100, "Image Test");
     gui_position += cv::Point(5, 25);
     cvui::text(im, gui_position.x, gui_position.y, "Number of Circles: " + std::to_string(i));
 
@@ -583,7 +585,7 @@ void lab3()
 ////////////////////////////////////////////////////////////////
 void lab4()
 {
-    ;
+    
     CSketch sketch(cv::Size(1000, 600), 3);
     sketch.run();
 }
@@ -593,6 +595,8 @@ void lab4()
 ////////////////////////////////////////////////////////////////
 void lab5()
 {
+    CPong pong(cv::Size(1000, 600), 3);
+    pong.run();
 }
 
 ////////////////////////////////////////////////////////////////

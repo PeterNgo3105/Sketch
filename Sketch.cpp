@@ -94,22 +94,14 @@ void CSketch::update(){
     
        
 }
-void CSketch::draw() {
-
-    
- 
-    
-     _point1 = cv::Point(_x_cursor - x_offset, _y_cursor + y_offset);
-    
-    
-    
+void CSketch::draw() {   
+     _point1 = cv::Point(_x_cursor - x_offset, _y_cursor + y_offset);    
     if (_color == 0)
         cv::line(_Canvas, _point1, _point2, cv::Scalar(0, 0, 255), thickness, cv::LINE_AA);   
     else if (_color ==1)
         cv::line(_Canvas, _point1, _point2, cv::Scalar(255, 0, 0), thickness, cv::LINE_AA);
     else
         cv::line(_Canvas, _point1, _point2, cv::Scalar(0, 255, 0), thickness, cv::LINE_AA);
-    //point2 = point1;
     _point2 = _point1;
     cv::imshow(CANVAS_NAME, _Canvas);
     if (_reset) {

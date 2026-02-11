@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['write_0',['write',['../class_serial.html#aae3d630a4fd81c8b148cb4eebdb91392',1,'Serial']]]
+  ['trackbarparams_0',['TrackbarParams',['../structcvui_1_1internal_1_1_trackbar_params.html',1,'cvui::internal']]]
 ];

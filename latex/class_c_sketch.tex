@@ -1,0 +1,175 @@
+\doxysection{CSketch Class Reference}
+\hypertarget{class_c_sketch}{}\label{class_c_sketch}\index{CSketch@{CSketch}}
+
+
+This class is a child of \doxylink{class_c_base4618}{CBase4618} class. The class will support to sketch and draw on Canva.  
+
+
+
+
+{\ttfamily \+\#include $<$CSketch.\+h$>$}
+
+Inheritance diagram for CSketch:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_sketch}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_sketch_ae65be6c57ccfa9e57f56b5bb910b37de}{CSketch}} (cv::\+\+Size Canvas\+\_\+size, int comport)
+\begin{DoxyCompactList}\small\item\em This function is to initialize the canvas and open comport. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_c_sketch_a3b7e2fa57fd26e4b812494268a5bbfbb}{update}} ()
+\begin{DoxyCompactList}\small\item\em This function is to calculate position and range of joytick. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_c_sketch_a56d74e157fc3a743e4733b4d12f870bb}{draw}} ()
+\begin{DoxyCompactList}\small\item\em This function is to draw lines to canvas. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_sketch_af7302c8310d8f744d2978ced73d09c2f}{run}} ()
+\begin{DoxyCompactList}\small\item\em This function is to run game sketch. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_sketch_a58170872dcfbf187789fb5e004f7cf3d}{GPIO}} ()
+\begin{DoxyCompactList}\small\item\em This function is to send data and get data to and from micro controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_control}{CControl}} \doxymbox{\hyperlink{class_c_sketch_afcae993efc895d109966c4d07c832657}{control}}
+\item 
+\Hypertarget{class_c_sketch_a3de562695bc59b8ffa7e40546c142263}\label{class_c_sketch_a3de562695bc59b8ffa7e40546c142263} 
+int {\bfseries \+\_\+x\+\_\+cursor}
+\begin{DoxyCompactList}\small\item\em joystick x direction \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a4b1e1a9ecb4ab822bb11866f77586d23}\label{class_c_sketch_a4b1e1a9ecb4ab822bb11866f77586d23} 
+int {\bfseries \+\_\+y\+\_\+cursor}
+\begin{DoxyCompactList}\small\item\em joystick y direction \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a009ba758ac0ea7f7ec5c352048031ce3}\label{class_c_sketch_a009ba758ac0ea7f7ec5c352048031ce3} 
+int {\bfseries \+\_\+color} = 0
+\begin{DoxyCompactList}\small\item\em color change variable \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_ad778285bf53a4d8f029c8e37cd02a51d}\label{class_c_sketch_ad778285bf53a4d8f029c8e37cd02a51d} 
+bool {\bfseries \+\_\+reset} = false
+\begin{DoxyCompactList}\small\item\em clear the draw variable \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_aa27bf65c85c47e487c830c64870e116d}\label{class_c_sketch_aa27bf65c85c47e487c830c64870e116d} 
+int {\bfseries \+\_\+x\+\_\+percent}
+\begin{DoxyCompactList}\small\item\em joystick x direction in percentage \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_aa4a8d7b2c67750f33cdcd2a2bfffb63a}\label{class_c_sketch_aa4a8d7b2c67750f33cdcd2a2bfffb63a} 
+int {\bfseries \+\_\+y\+\_\+percent}
+\begin{DoxyCompactList}\small\item\em joystick y direction in percentage \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a260b84f2e6098cc696c51bd3f8a6cb12}\label{class_c_sketch_a260b84f2e6098cc696c51bd3f8a6cb12} 
+cv::\+\+Point {\bfseries \+\_\+point1}
+\begin{DoxyCompactList}\small\item\em first point of line sketch \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a365ecc343b0af59084b8c327312e0fb5}\label{class_c_sketch_a365ecc343b0af59084b8c327312e0fb5} 
+cv::\+\+Point {\bfseries \+\_\+point2} = cv::\+\+Point(\+\_\+\+Canvas.\+size().width/\+2, \+\_\+\+Canvas.\+size().height/\+2)
+\begin{DoxyCompactList}\small\item\em second point of line sketch \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes inherited from \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_control}{CControl}} {\bfseries \+\_\+\+Control}
+\begin{DoxyCompactList}\small\item\em this variable to set and get data to and from controller \end{DoxyCompactList}\item 
+cv::\+\+Mat {\bfseries \+\_\+\+Canvas}
+\begin{DoxyCompactList}\small\item\em this variable to set up the screen for games \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is a child of \doxylink{class_c_base4618}{CBase4618} class. The class will support to sketch and draw on Canva. 
+
+@\+Author Peter Ngo 
+
+\label{doc-constructors}
+\Hypertarget{class_c_sketch_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_c_sketch_ae65be6c57ccfa9e57f56b5bb910b37de}\index{CSketch@{CSketch}!CSketch@{CSketch}}
+\index{CSketch@{CSketch}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{CSketch()}{CSketch()}}
+{\footnotesize\ttfamily \label{class_c_sketch_ae65be6c57ccfa9e57f56b5bb910b37de} 
+CSketch::\+\+CSketch (\begin{DoxyParamCaption}\item[{cv::\+\+Size}]{Canvas\+\_\+size}{, }\item[{int}]{comport}{}\end{DoxyParamCaption})}
+
+
+
+This function is to initialize the canvas and open comport. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Canvas\+\_\+size} & is width and height of screen \\
+\hline
+{\em comport} & is port number of micro controller\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_sketch_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_sketch_a56d74e157fc3a743e4733b4d12f870bb}\index{CSketch@{CSketch}!draw@{draw}}
+\index{draw@{draw}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_c_sketch_a56d74e157fc3a743e4733b4d12f870bb} 
+void CSketch::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+This function is to draw lines to canvas. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_sketch_a58170872dcfbf187789fb5e004f7cf3d}\index{CSketch@{CSketch}!GPIO@{GPIO}}
+\index{GPIO@{GPIO}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{GPIO()}{GPIO()}}
+{\footnotesize\ttfamily \label{class_c_sketch_a58170872dcfbf187789fb5e004f7cf3d} 
+void CSketch::\+\+GPIO (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+This function is to send data and get data to and from micro controller. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_sketch_af7302c8310d8f744d2978ced73d09c2f}\index{CSketch@{CSketch}!run@{run}}
+\index{run@{run}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_c_sketch_af7302c8310d8f744d2978ced73d09c2f} 
+void CSketch::\+run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+This function is to run game sketch. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_sketch_a3b7e2fa57fd26e4b812494268a5bbfbb}\index{CSketch@{CSketch}!update@{update}}
+\index{update@{update}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_c_sketch_a3b7e2fa57fd26e4b812494268a5bbfbb} 
+void CSketch::\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+This function is to calculate position and range of joytick. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_c_sketch_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_c_sketch_afcae993efc895d109966c4d07c832657}\index{CSketch@{CSketch}!control@{control}}
+\index{control@{control}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{control}{control}}
+{\footnotesize\ttfamily \label{class_c_sketch_afcae993efc895d109966c4d07c832657} 
+\doxymbox{\hyperlink{class_c_control}{CControl}} CSketch::\+control\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & variable to get access to \doxylink{class_c_control}{CControl} class \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+CSketch.\+h\item 
+Sketch.\+cpp\end{DoxyCompactItemize}

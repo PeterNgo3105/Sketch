@@ -49,11 +49,7 @@ public:
 	void GPIO();
 	
 private:
-	/**
-	*@param this variable to get access to CControl class
-	*
-	*/
-	CControl control;
+	CControl control;	///< this variable to get access to CControl class
 	int _x_cursor;		///< joystick x direction
 	int _y_cursor;		///< joystick y direction
 	int _color = 0;		///< color change variable

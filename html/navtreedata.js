@@ -24,10 +24,11 @@
 */
 var NAVTREE =
 [
-  [ "Lab_3_embedded_Control", "index.html", [
+  [ "My Project", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
@@ -42,7 +43,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_c_control_8h_source.html"
+"_8___c_sketch_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

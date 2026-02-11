@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['set_5fdata_0',['set_data',['../class_c_control.html#a13f557815616ef66a8f5dd4b725d8c32',1,'CControl']]]
+  ['init_5fcom_0',['init_com',['../class_c_control.html#a3d1384d0e1ee2a4a478a798b46457468',1,'CControl']]]
 ];

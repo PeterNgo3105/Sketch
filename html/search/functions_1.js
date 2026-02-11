@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init_5fcom_0',['init_com',['../class_c_control.html#a3d1384d0e1ee2a4a478a798b46457468',1,'CControl']]]
+  ['draw_0',['draw',['../class_c_sketch.html#a56d74e157fc3a743e4733b4d12f870bb',1,'CSketch']]]
 ];
