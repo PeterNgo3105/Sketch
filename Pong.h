@@ -23,6 +23,7 @@ public:
 	virtual void draw();
 	void run();
 	void GPIO();
+	void debounce(int angle_level);
 private:
 	CControl control;		///< this variable to get access to CControl class
 	bool _reset = false;	///< clear the game and reset game back to zero
