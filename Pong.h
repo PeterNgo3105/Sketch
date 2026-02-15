@@ -23,7 +23,7 @@ public:
 	virtual void draw();
 	void run();
 	void GPIO();
-	void debounce(int angle_level);
+
 private:
 	CControl control;		///< this variable to get access to CControl class
 	bool _reset = false;	///< clear the game and reset game back to zero
@@ -37,4 +37,6 @@ private:
 	cv::Rect _player_baddle;///< rectanle paddle for player
 	cv::Rect _bot_baddle;	///< rectanle paddle for computer
 	int _botY_mid_paddle_point;	///< middle point opf computer paddle
+	int _player_score = 0;	///< tracking score for player
+	int _computer_score = 0; ///< tracking score for computer
 };
