@@ -39,4 +39,8 @@ private:
 	int _botY_mid_paddle_point;	///< middle point opf computer paddle
 	int _player_score = 0;	///< tracking score for player
 	int _computer_score = 0; ///< tracking score for computer
+	int _ball_size = 30;	///< ping pong ball size setup
+	int _speed = 30;		///< speed setup
+	bool _running = true;	///< while loop variable
+	
 };

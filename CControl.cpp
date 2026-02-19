@@ -91,19 +91,19 @@ float CControl::get_analog(float value) {
     float val = (value / 4096) * 100;//4096
     return val;
 }
-bool CControl::get_button(bool button) {
+bool CControl::get_button(bool value) {
     using clock = std::chrono::steady_clock;
     static bool last_button = true;
     static auto last_time = clock::now() - std::chrono::seconds(1);
     auto now = clock::now();
-    if (button && !last_button) {
+    if (value && !last_button) {
         if (now - last_time >= std::chrono::seconds(1)) {
             last_time = now;
-            last_button = button;
+            last_button = value;
             return true;
         }
     }
-    last_button = button;
+    last_button = value;
     return false;
 }
 CControl::CControl() {
