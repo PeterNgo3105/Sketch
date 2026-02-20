@@ -286,6 +286,7 @@ void CPong::update() {
 void CPong::draw() {
     // GUI Menu
     //auto end_time = std::chrono::steady_clock::now() + std::chrono::duration<double, std::milli>(1000 / FPS_SP);
+    
     gui_position = cv::Point(10, 10);
     cvui::window(_Canvas, gui_position.x, gui_position.y, 220, 170, "Pong {FPS                  }");
     gui_position = cv::Point(100, 15);
@@ -308,6 +309,8 @@ void CPong::draw() {
     cvui::trackbar(_Canvas, gui_position.x, gui_position.y, 190, &_speed, 100, 400);
     Close_position = cv::Point(30, 180);
     Reset_position = cv::Point(130, 180);
+    
+
     //cv::imshow(CANVAS_NAME, _Canvas);
     if (cvui::button(_Canvas, Reset_position.x, Reset_position.y, 60, 40, "reset")) {
         _reset = true;
@@ -328,15 +331,18 @@ void CPong::draw() {
     cv::circle(_Canvas, _ball, 4, cv::Scalar(200, 200, 200), _ball_size, cv::LINE_AA); 
     cv::rectangle(_Canvas, _player_baddle, cv::Scalar(255, 255, 255), paddle_thickness, 8, 0);
     cv::rectangle(_Canvas, _bot_baddle, cv::Scalar(255, 255, 255), paddle_thickness, 8, 0);
-    cv::imshow(CANVAS_NAME, _Canvas);
-
     if (_computer_score >= 5 || _player_score >= 5)
     {
+
         gui_position = cv::Point(400, 250);
+        cvui::window(_Canvas, gui_position.x, gui_position.y, 220, 170, "Game Over");
+        gui_position = cv::Point(450, 300);
         cvui::text(_Canvas, gui_position.x, gui_position.y, "Game Over");
-        
-        _reset = true;
+        //cvui::update();
+
+        //_reset = true;
     }
+    cv::imshow(CANVAS_NAME, _Canvas);
 
     if (_reset) {
         _Canvas.setTo(cv::Scalar(0, 0, 0));
@@ -364,10 +370,14 @@ void CPong::GPIO() {
         _reset = true;
     }
     control.get_data(D_type, D_channel, digital_val);
-    
-    if (control.get_button(digital_val)) {
-        _start_button = true;
+    if (_computer_score < 5 && _player_score < 5)
+    {
+        if (control.get_button(digital_val)) {
+            _start_button = true;
+        }
+
     }
+    
     control.get_data(A_type, dirY_channel, dirY_val);
     _pointY_dir_percent = static_cast<int>(control.get_analog(dirY_val));
     // Sleep if time remaining

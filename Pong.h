@@ -47,10 +47,40 @@ private:
 	bool _running = true;	///< while loop variable
 	bool _thread_exit = false;		///< stop all thread when it is true
 	double _FPS;				///< measuring game speed
+	/** @brief This function is to calculate position and range of joytick.
+	*
+	* @return nothing
+	*
+	*/
 	virtual void update();
+	/** @brief This function is to create ball, paddles and display window
+	*
+	* @return nothing
+	*
+	*/
 	virtual void draw();
+	/** @brief This function is to send data and get data to and from micro controller
+	*
+	* @return nothing
+	*
+	*/
 	void GPIO();
+	/** @brief This function is to run update function seperately
+	*
+	* @return nothing
+	*
+	*/
 	static void update_thread(CPong* ptr);
+	/** @brief This function is to run draw function seperately
+	*
+	* @return nothing
+	*
+	*/
 	static void draw_thread(CPong* ptr);
+	/** @brief This function is to run GPIO function seperately
+	*
+	* @return nothing
+	*
+	*/
 	static void GPIO_thread(CPong* ptr);
 };
