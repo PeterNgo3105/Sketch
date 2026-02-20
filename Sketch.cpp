@@ -28,7 +28,7 @@ int radian = 2;
 int thickness = 4;
 int x_offset = 150;
 int y_offset = 0;
-float speed = 5.0f;
+//float speed = 5.0f;
 int dir_x, dir_y;
 
 

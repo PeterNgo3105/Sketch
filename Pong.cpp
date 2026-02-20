@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <conio.h>
 #include <algorithm>
+#include <sstream>
 
 #include "cvui.h"
 #include "CBase4618.h"
@@ -20,7 +21,7 @@ int reset_val = 1;
 int dirY_val;
 int line_thickness = 8;
 int bar_half_length = 40;
-
+int FPS_SP = 34;
 int paddle_thickness = 20;
 int collision, collision2;
 int angle_level = 0;
@@ -28,6 +29,7 @@ int pos1_temp;
 int pos2_temp;
 bool ons_inital = true;
 int collision_state = 0;
+float speed;
 
 cv::Point Close_position;
 cv::Point Reset_position;
@@ -47,41 +49,50 @@ void CPong::run() {
     _pos1 = _Canvas.size().width / 2;
     _pos2 = _Canvas.size().height / 2;
     _botY_mid_paddle_point = _Canvas.size().height / 2;
-
+    //std::thread thread1(&CPong::draw_thread, this);
+    std::thread thread2(&CPong::GPIO_thread,this);
+    std::thread thread3(&CPong::update_thread,this);
+    //thread1.detach();
+    thread2.detach();
+    thread3.detach();
     while (_running) {
-        auto calc_start = std::chrono::steady_clock::now();
+       
         // Set update rate at 10 Hz (100 ms per loop)
-        auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(1000/30);
-   
+        
         if (_kbhit()) {           // check if key pressed (non-blocking)
             char ch = _getch();   // read key
             if (ch == 113 || ch == 81) {       // ESC key ASCII = 27
                 while (_kbhit()) _getch();
                 _running = false;
+                _thread_exit = true;
             }
         }     
         else
-        {   
+        {
+            auto end_time = std::chrono::steady_clock::now() + std::chrono::duration<double, std::milli>(1000/FPS_SP);
+            //std::cout << "sleep time " << std::chrono::duration<double, std::milli>(end_time - std::chrono::steady_clock::now()).count() << "\n";
+            auto calc_start = std::chrono::steady_clock::now();
             draw();  
-            GPIO();   
-            update();  
-            cv::waitKey(1);    
+           
+            std::this_thread::sleep_until(end_time);
+            auto calc_end = std::chrono::steady_clock::now();
+            std::chrono::duration<double> calc_elapsed = calc_end - calc_start;
+            //auto calc_elapsed = (std::chrono::duration_cast<std::chrono::seconds>(calc_end - calc_start));
+            double FPS = 1 / calc_elapsed.count();
+            _FPS = std::round(FPS * 10000.0) / 10000.0;
+            std::cout << "\nElapsed Time: " << calc_elapsed.count() << " FPS " << _FPS << "\n";
         }  
-        // Do a bunch of processing
         // Sleep if time remaining
-        std::this_thread::sleep_until(end_time);
-        auto calc_end = std::chrono::steady_clock::now();
-        std::chrono::duration<double> calc_elapsed = calc_end - calc_start;
-        //auto calc_elapsed = (std::chrono::duration_cast<std::chrono::seconds>(calc_end - calc_start));
-        double FPS = 1 / calc_elapsed.count();
-        std::cout << "\nElapsed Time: " << calc_elapsed.count() << " FPS "<< FPS << "\n";
+       
+        
         
     }
 }
 void CPong::update() {
+    auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(1000 / FPS_SP);
     auto calc_start = std::chrono::steady_clock::now();
     // Code under test
-    
+    speed = _speed / FPS_SP;
     _pointY_mid_position = (((_Canvas.size().height) * (100 - _pointY_dir_percent)) / 100);
    
     int closestX = clamp(_ball.x, _player_baddle.x, _player_baddle.x + _player_baddle.width);
@@ -94,12 +105,13 @@ void CPong::update() {
     int wall_bottom_collision = (_Canvas.rows - wall_check) * (_Canvas.rows - wall_check);
     int computer_win_point = 1;
     int player_win_point = 1;
+
     if (ons_inital) {
         pos1_temp = _Canvas.size().width / 2;
         pos2_temp = _Canvas.size().height / 2;
     }
-    int pointX_speed = sqrt((_speed/2)* (_speed/ 2));
-    int pointY_speed = sqrt((_speed / 2) * (_speed / 2));
+    int pointX_speed = sqrt((speed/2)* (speed/ 2));
+    int pointY_speed = sqrt((speed / 2) * (speed / 2));
     //distance between ball and baddle
     collision = (_ball.x - closestX) * (_ball.x - closestX) +(_ball.y - closestY) * (_ball.y - closestY);
     collision2 = (_ball.x - bot_closestX) * (_ball.x - bot_closestX) +(_ball.y - bot_closestY) * (_ball.y - bot_closestY);
@@ -265,17 +277,19 @@ void CPong::update() {
         pos2_temp = _pos2;
         auto calc_end = std::chrono::steady_clock::now();
         float calc_elapsed = std::chrono::duration<float>(calc_end - calc_start).count();
-        _speed= _speed + _speed * calc_elapsed*1000;
+        //speed= _speed/calc_elapsed;
 
     }
-   
+    // Sleep if time remaining
+    std::this_thread::sleep_until(end_time);
 }
 void CPong::draw() {
     // GUI Menu
+    //auto end_time = std::chrono::steady_clock::now() + std::chrono::duration<double, std::milli>(1000 / FPS_SP);
     gui_position = cv::Point(10, 10);
-    cvui::window(_Canvas, gui_position.x, gui_position.y, 220, 170, "Pong {FPS}");
+    cvui::window(_Canvas, gui_position.x, gui_position.y, 220, 170, "Pong {FPS                  }");
     gui_position = cv::Point(100, 15);
-    cvui::text(_Canvas, gui_position.x, gui_position.y, "value");
+    cvui::text(_Canvas, gui_position.x, gui_position.y, std::to_string(_FPS));
     gui_position = cv::Point(15, 35);
     cvui::text(_Canvas, gui_position.x, gui_position.y, "Player:");
     gui_position = cv::Point(65, 35);
@@ -287,45 +301,64 @@ void CPong::draw() {
     gui_position = cv::Point(80, 65);
     cvui::text(_Canvas, gui_position.x, gui_position.y, "Radius");
     gui_position = cv::Point(10, 70);
-    cvui::trackbar(_Canvas, gui_position.x, gui_position.y, 190, &_ball_size, 5, 120);
+    cvui::trackbar(_Canvas, gui_position.x, gui_position.y, 190, &_ball_size, 5, 100);
     gui_position = cv::Point(80, 120);
     cvui::text(_Canvas, gui_position.x, gui_position.y, "Speed");
     gui_position = cv::Point(10, 125);
-    cvui::trackbar(_Canvas, gui_position.x, gui_position.y, 190, &_speed, 5, 120);
+    cvui::trackbar(_Canvas, gui_position.x, gui_position.y, 190, &_speed, 100, 400);
     Close_position = cv::Point(30, 180);
     Reset_position = cv::Point(130, 180);
+    //cv::imshow(CANVAS_NAME, _Canvas);
     if (cvui::button(_Canvas, Reset_position.x, Reset_position.y, 60, 40, "reset")) {
         _reset = true;
         cvui::update();
     }
     if (cvui::button(_Canvas, Close_position.x, Close_position.y, 60, 40, "Exit")) {
         _running = false;
+        _thread_exit = true;
         cvui::update();
-    } 
+    }
+
     _bot_baddle = cv::Rect(0, _botY_mid_paddle_point - bar_half_length, 4, 80);
     _player_baddle = cv::Rect(_Canvas.size().width, _pointY_mid_position - bar_half_length, 4, 80);
     _ball = cv::Point(_pos1, _pos2);
+    cv::Point point1 = cv::Point(_Canvas.size().width / 2, 0);
+    cv::Point point2 = cv::Point(_Canvas.size().width / 2, _Canvas.size().height);
+    cv::line(_Canvas, point1, point2, cv::Scalar(0, 0, 255),2, cv::LINE_AA);
     cv::circle(_Canvas, _ball, 4, cv::Scalar(200, 200, 200), _ball_size, cv::LINE_AA); 
-        cv::rectangle(_Canvas, _player_baddle, cv::Scalar(255, 255, 255), paddle_thickness, 8, 0);
-        cv::rectangle(_Canvas, _bot_baddle, cv::Scalar(255, 255, 255), paddle_thickness, 8, 0);
-        cv::imshow(CANVAS_NAME, _Canvas);
+    cv::rectangle(_Canvas, _player_baddle, cv::Scalar(255, 255, 255), paddle_thickness, 8, 0);
+    cv::rectangle(_Canvas, _bot_baddle, cv::Scalar(255, 255, 255), paddle_thickness, 8, 0);
+    cv::imshow(CANVAS_NAME, _Canvas);
+
+    if (_computer_score >= 5 || _player_score >= 5)
+    {
+        gui_position = cv::Point(400, 250);
+        cvui::text(_Canvas, gui_position.x, gui_position.y, "Game Over");
+        
+        _reset = true;
+    }
+
     if (_reset) {
         _Canvas.setTo(cv::Scalar(0, 0, 0));
         _pos1 = _Canvas.size().width / 2;
         _pos2 = _Canvas.size().height / 2;
         _botY_mid_paddle_point = _Canvas.size().height / 2;
-        _level_up = 0;
+        //_level_up = 0;
         _computer_score = 0;
         _player_score = 0;
         _ball_size = 30;
-        _speed = 30;
+        _speed = 400;
         _start_button = false;
         _reset = false;
     }
     _Canvas.setTo(cv::Scalar(0, 0, 0));
+    cvui::update();
+    cv::waitKey(1);
+    //std::this_thread::sleep_until(end_time);
 }
 
 void CPong::GPIO() {
+    auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(1000 / FPS_SP);
     control.get_data(D_type, Reset_channel, reset_val);
     if (control.get_button(reset_val)) {
         _reset = true;
@@ -337,11 +370,43 @@ void CPong::GPIO() {
     }
     control.get_data(A_type, dirY_channel, dirY_val);
     _pointY_dir_percent = static_cast<int>(control.get_analog(dirY_val));
+    // Sleep if time remaining
+    std::this_thread::sleep_until(end_time);
     }
 
 CPong::CPong() {
 
 }
+void CPong::update_thread(CPong* ptr) {
+    while (ptr->_thread_exit == false)
+    {
+        //std::cout << "update running\n";
+        ptr->update();
+        //Sleep(300);
+    }
+    std::cout << "update exit\n";
+}
+void CPong::draw_thread(CPong* ptr) {
+    while (ptr->_thread_exit == false)
+    {
+        //std::cout << "draw running\n";
+        ptr->draw();
+        //cv::waitKey(1);
+        //Sleep(300);
+    }
+    std::cout << "draw exit\n";
+}
+void CPong::GPIO_thread(CPong* ptr) {
+    while (ptr->_thread_exit == false)
+    {
+        //std::cout << "GPIO running\n";
+        //Sleep(300);
+        ptr->GPIO();
+    }
+    std::cout << "GPIO exit\n";
+}
+
+
 
 ///////////////////////////
 /// checking if the ball collize to the paddle

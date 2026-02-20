@@ -19,10 +19,13 @@ public:
 	*
 	*/
 	CPong(cv::Size Canvas_size, int comport);
-	virtual void update();
-	virtual void draw();
+	//virtual void update();
+	//virtual void draw();
 	void run();
-	void GPIO();
+	//void GPIO();
+	//static void update_thread(CPong* ptr);
+	//static void draw_thread(CPong* ptr);
+	//static void GPIO_thread(CPong* ptr);
 
 private:
 	CControl control;		///< this variable to get access to CControl class
@@ -30,7 +33,7 @@ private:
 	int _pointY_dir_percent;///< joystick y direction in percentage
 	int _pointY_mid_position = 0;///< mid point of player baddle
 	int _start_button = false;	///< game start when this button is pressed
-	int _level_up = 0;		///< speed up when the ball colision with the baddle
+	//int _level_up = 0;		///< speed up when the ball colision with the baddle
 	int _pos1;				///< the ball x position
 	int _pos2;				///< the ball y position
 	cv::Point _ball;		///< pong ball
@@ -40,7 +43,14 @@ private:
 	int _player_score = 0;	///< tracking score for player
 	int _computer_score = 0; ///< tracking score for computer
 	int _ball_size = 30;	///< ping pong ball size setup
-	int _speed = 30;		///< speed setup
+	int _speed = 400;		///< speed setup
 	bool _running = true;	///< while loop variable
-	
+	bool _thread_exit = false;		///< stop all thread when it is true
+	double _FPS;				///< measuring game speed
+	virtual void update();
+	virtual void draw();
+	void GPIO();
+	static void update_thread(CPong* ptr);
+	static void draw_thread(CPong* ptr);
+	static void GPIO_thread(CPong* ptr);
 };
