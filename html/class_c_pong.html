@@ -92,7 +92,7 @@ $(function(){initNavTree('class_c_pong.html','','class_c_pong-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>This class.  
+<p>This class is a child of <a class="el" href="class_c_base4618.html" title="This class is base class for lab 4 to lab 9.">CBase4618</a> class. The class will support to for Pong Game.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pong_8h_source.html">Pong.h</a>&gt;</code></p>
@@ -108,13 +108,85 @@ Inheritance diagram for CPong:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6b6f15523eac9975e693c64b033c25e7" id="r_a6b6f15523eac9975e693c64b033c25e7"><td class="memItemLeft"><a id="a6b6f15523eac9975e693c64b033c25e7" name="a6b6f15523eac9975e693c64b033c25e7"></a>
-virtual void&#160;</td><td class="memItemRight"><b>update</b> ()</td></tr>
-<tr class="memitem:ad8fabbd2ea8f321763391265cb0ff8bb" id="r_ad8fabbd2ea8f321763391265cb0ff8bb"><td class="memItemLeft"><a id="ad8fabbd2ea8f321763391265cb0ff8bb" name="ad8fabbd2ea8f321763391265cb0ff8bb"></a>
-virtual void&#160;</td><td class="memItemRight"><b>draw</b> ()</td></tr>
+<tr class="memitem:ab2881c2fcfebc9829b6b00fe615c9712" id="r_ab2881c2fcfebc9829b6b00fe615c9712"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab2881c2fcfebc9829b6b00fe615c9712">CPong</a> (cv::Size Canvas_size, int comport)</td></tr>
+<tr class="memdesc:ab2881c2fcfebc9829b6b00fe615c9712"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to initialize the canvas and open comport.  <br /></td></tr>
+<tr class="memitem:a8d1f1736decaa60a8b8e5b45798f9d72" id="r_a8d1f1736decaa60a8b8e5b45798f9d72"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8d1f1736decaa60a8b8e5b45798f9d72">run</a> ()</td></tr>
+<tr class="memdesc:a8d1f1736decaa60a8b8e5b45798f9d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to run game Pong.  <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:abdf0d44329b40d14863ba134b031435a" id="r_abdf0d44329b40d14863ba134b031435a"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#abdf0d44329b40d14863ba134b031435a">update</a> ()</td></tr>
+<tr class="memdesc:abdf0d44329b40d14863ba134b031435a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to calculate position and range of joytick.  <br /></td></tr>
+<tr class="memitem:ae5c14ff09d074474ffd4f220b21dc00f" id="r_ae5c14ff09d074474ffd4f220b21dc00f"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ae5c14ff09d074474ffd4f220b21dc00f">draw</a> ()</td></tr>
+<tr class="memdesc:ae5c14ff09d074474ffd4f220b21dc00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to create ball, paddles and display window.  <br /></td></tr>
+<tr class="memitem:a63aaa8201251a3aca47219b32d295f1b" id="r_a63aaa8201251a3aca47219b32d295f1b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a63aaa8201251a3aca47219b32d295f1b">GPIO</a> ()</td></tr>
+<tr class="memdesc:a63aaa8201251a3aca47219b32d295f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to send data and get data to and from micro controller.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a0aa8bcff4fbe1aa4c0f5865d304c18b5" id="r_a0aa8bcff4fbe1aa4c0f5865d304c18b5"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a0aa8bcff4fbe1aa4c0f5865d304c18b5">update_thread</a> (<a class="el" href="class_c_pong.html">CPong</a> *ptr)</td></tr>
+<tr class="memdesc:a0aa8bcff4fbe1aa4c0f5865d304c18b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to run update function seperately.  <br /></td></tr>
+<tr class="memitem:ab7652242b52792e24365b80cd926e330" id="r_ab7652242b52792e24365b80cd926e330"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ab7652242b52792e24365b80cd926e330">draw_thread</a> (<a class="el" href="class_c_pong.html">CPong</a> *ptr)</td></tr>
+<tr class="memdesc:ab7652242b52792e24365b80cd926e330"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to run draw function seperately.  <br /></td></tr>
+<tr class="memitem:aee8275dea685ec9f5973618d63e7d728" id="r_aee8275dea685ec9f5973618d63e7d728"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#aee8275dea685ec9f5973618d63e7d728">GPIO_thread</a> (<a class="el" href="class_c_pong.html">CPong</a> *ptr)</td></tr>
+<tr class="memdesc:aee8275dea685ec9f5973618d63e7d728"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to run GPIO function seperately.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ab0d533142904be3430a09dded34fc6fe" id="r_ab0d533142904be3430a09dded34fc6fe"><td class="memItemLeft"><a id="ab0d533142904be3430a09dded34fc6fe" name="ab0d533142904be3430a09dded34fc6fe"></a>
+<a class="el" href="class_c_control.html">CControl</a>&#160;</td><td class="memItemRight"><b>control</b></td></tr>
+<tr class="memdesc:ab0d533142904be3430a09dded34fc6fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">this variable to get access to <a class="el" href="class_c_control.html" title="This class is meant to sending commands set data to and get data from Comport of micro controller Thi...">CControl</a> class <br /></td></tr>
+<tr class="memitem:a4cf1331fa209cf5df9b8d6372ecc5733" id="r_a4cf1331fa209cf5df9b8d6372ecc5733"><td class="memItemLeft"><a id="a4cf1331fa209cf5df9b8d6372ecc5733" name="a4cf1331fa209cf5df9b8d6372ecc5733"></a>
+bool&#160;</td><td class="memItemRight"><b>_reset</b> = false</td></tr>
+<tr class="memdesc:a4cf1331fa209cf5df9b8d6372ecc5733"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear the game and reset game back to zero <br /></td></tr>
+<tr class="memitem:a565d7c5b3cb93a6153fe1a2a4fd98541" id="r_a565d7c5b3cb93a6153fe1a2a4fd98541"><td class="memItemLeft"><a id="a565d7c5b3cb93a6153fe1a2a4fd98541" name="a565d7c5b3cb93a6153fe1a2a4fd98541"></a>
+int&#160;</td><td class="memItemRight"><b>_pointY_dir_percent</b></td></tr>
+<tr class="memdesc:a565d7c5b3cb93a6153fe1a2a4fd98541"><td class="mdescLeft">&#160;</td><td class="mdescRight">joystick y direction in percentage <br /></td></tr>
+<tr class="memitem:a7d78bdd18327a2bdce6459835dbdcbf8" id="r_a7d78bdd18327a2bdce6459835dbdcbf8"><td class="memItemLeft"><a id="a7d78bdd18327a2bdce6459835dbdcbf8" name="a7d78bdd18327a2bdce6459835dbdcbf8"></a>
+int&#160;</td><td class="memItemRight"><b>_pointY_mid_position</b> = 0</td></tr>
+<tr class="memdesc:a7d78bdd18327a2bdce6459835dbdcbf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">mid point of player baddle <br /></td></tr>
+<tr class="memitem:a5e649cf362916a2771fe092afde6308c" id="r_a5e649cf362916a2771fe092afde6308c"><td class="memItemLeft"><a id="a5e649cf362916a2771fe092afde6308c" name="a5e649cf362916a2771fe092afde6308c"></a>
+int&#160;</td><td class="memItemRight"><b>_start_button</b> = false</td></tr>
+<tr class="memdesc:a5e649cf362916a2771fe092afde6308c"><td class="mdescLeft">&#160;</td><td class="mdescRight">game start when this button is pressed <br /></td></tr>
+<tr class="memitem:ae8f7fda08e039ebced89639ebc09a1a8" id="r_ae8f7fda08e039ebced89639ebc09a1a8"><td class="memItemLeft"><a id="ae8f7fda08e039ebced89639ebc09a1a8" name="ae8f7fda08e039ebced89639ebc09a1a8"></a>
+int&#160;</td><td class="memItemRight"><b>_pos1</b></td></tr>
+<tr class="memdesc:ae8f7fda08e039ebced89639ebc09a1a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">the ball x position <br /></td></tr>
+<tr class="memitem:ae2880c63f39e14be2cf8760da27bf17f" id="r_ae2880c63f39e14be2cf8760da27bf17f"><td class="memItemLeft"><a id="ae2880c63f39e14be2cf8760da27bf17f" name="ae2880c63f39e14be2cf8760da27bf17f"></a>
+int&#160;</td><td class="memItemRight"><b>_pos2</b></td></tr>
+<tr class="memdesc:ae2880c63f39e14be2cf8760da27bf17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">the ball y position <br /></td></tr>
+<tr class="memitem:acbdb6034acbc8ff53d038c3715b95b54" id="r_acbdb6034acbc8ff53d038c3715b95b54"><td class="memItemLeft"><a id="acbdb6034acbc8ff53d038c3715b95b54" name="acbdb6034acbc8ff53d038c3715b95b54"></a>
+cv::Point&#160;</td><td class="memItemRight"><b>_ball</b></td></tr>
+<tr class="memdesc:acbdb6034acbc8ff53d038c3715b95b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">pong ball <br /></td></tr>
+<tr class="memitem:a0ab747f3987d94f7a04202a6857dec1a" id="r_a0ab747f3987d94f7a04202a6857dec1a"><td class="memItemLeft"><a id="a0ab747f3987d94f7a04202a6857dec1a" name="a0ab747f3987d94f7a04202a6857dec1a"></a>
+cv::Rect&#160;</td><td class="memItemRight"><b>_player_baddle</b></td></tr>
+<tr class="memdesc:a0ab747f3987d94f7a04202a6857dec1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">rectanle paddle for player <br /></td></tr>
+<tr class="memitem:a0b72310ec92246f7d325d529aff3c1d5" id="r_a0b72310ec92246f7d325d529aff3c1d5"><td class="memItemLeft"><a id="a0b72310ec92246f7d325d529aff3c1d5" name="a0b72310ec92246f7d325d529aff3c1d5"></a>
+cv::Rect&#160;</td><td class="memItemRight"><b>_bot_baddle</b></td></tr>
+<tr class="memdesc:a0b72310ec92246f7d325d529aff3c1d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">rectanle paddle for computer <br /></td></tr>
+<tr class="memitem:a3fb3c882019595a169c27fc9e91e587a" id="r_a3fb3c882019595a169c27fc9e91e587a"><td class="memItemLeft"><a id="a3fb3c882019595a169c27fc9e91e587a" name="a3fb3c882019595a169c27fc9e91e587a"></a>
+int&#160;</td><td class="memItemRight"><b>_botY_mid_paddle_point</b></td></tr>
+<tr class="memdesc:a3fb3c882019595a169c27fc9e91e587a"><td class="mdescLeft">&#160;</td><td class="mdescRight">middle point opf computer paddle <br /></td></tr>
+<tr class="memitem:aa2fbf42ac4389739f405030d8e2a15eb" id="r_aa2fbf42ac4389739f405030d8e2a15eb"><td class="memItemLeft"><a id="aa2fbf42ac4389739f405030d8e2a15eb" name="aa2fbf42ac4389739f405030d8e2a15eb"></a>
+int&#160;</td><td class="memItemRight"><b>_player_score</b> = 0</td></tr>
+<tr class="memdesc:aa2fbf42ac4389739f405030d8e2a15eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">tracking score for player <br /></td></tr>
+<tr class="memitem:aab3c2fa0e13847ad0d57ecffad406f82" id="r_aab3c2fa0e13847ad0d57ecffad406f82"><td class="memItemLeft"><a id="aab3c2fa0e13847ad0d57ecffad406f82" name="aab3c2fa0e13847ad0d57ecffad406f82"></a>
+int&#160;</td><td class="memItemRight"><b>_computer_score</b> = 0</td></tr>
+<tr class="memdesc:aab3c2fa0e13847ad0d57ecffad406f82"><td class="mdescLeft">&#160;</td><td class="mdescRight">tracking score for computer <br /></td></tr>
+<tr class="memitem:a5cea30cb5331a61e9b00a191959cfb81" id="r_a5cea30cb5331a61e9b00a191959cfb81"><td class="memItemLeft"><a id="a5cea30cb5331a61e9b00a191959cfb81" name="a5cea30cb5331a61e9b00a191959cfb81"></a>
+int&#160;</td><td class="memItemRight"><b>_ball_size</b> = 30</td></tr>
+<tr class="memdesc:a5cea30cb5331a61e9b00a191959cfb81"><td class="mdescLeft">&#160;</td><td class="mdescRight">ping pong ball size setup <br /></td></tr>
+<tr class="memitem:ad9c8b7a1a22df098cd1dd74f879d50f9" id="r_ad9c8b7a1a22df098cd1dd74f879d50f9"><td class="memItemLeft"><a id="ad9c8b7a1a22df098cd1dd74f879d50f9" name="ad9c8b7a1a22df098cd1dd74f879d50f9"></a>
+int&#160;</td><td class="memItemRight"><b>_speed</b> = 400</td></tr>
+<tr class="memdesc:ad9c8b7a1a22df098cd1dd74f879d50f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">speed setup <br /></td></tr>
+<tr class="memitem:ad0f010912a14ec216ca5c36d9caf37e7" id="r_ad0f010912a14ec216ca5c36d9caf37e7"><td class="memItemLeft"><a id="ad0f010912a14ec216ca5c36d9caf37e7" name="ad0f010912a14ec216ca5c36d9caf37e7"></a>
+bool&#160;</td><td class="memItemRight"><b>_running</b> = true</td></tr>
+<tr class="memdesc:ad0f010912a14ec216ca5c36d9caf37e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">while loop variable <br /></td></tr>
+<tr class="memitem:ae578ab1f345c5c475c2cd4186b13adba" id="r_ae578ab1f345c5c475c2cd4186b13adba"><td class="memItemLeft"><a id="ae578ab1f345c5c475c2cd4186b13adba" name="ae578ab1f345c5c475c2cd4186b13adba"></a>
+bool&#160;</td><td class="memItemRight"><b>_thread_exit</b> = false</td></tr>
+<tr class="memdesc:ae578ab1f345c5c475c2cd4186b13adba"><td class="mdescLeft">&#160;</td><td class="mdescRight">stop all thread when it is true <br /></td></tr>
+<tr class="memitem:a8df1fdef3bf2566b7e30182ee2483bb9" id="r_a8df1fdef3bf2566b7e30182ee2483bb9"><td class="memItemLeft"><a id="a8df1fdef3bf2566b7e30182ee2483bb9" name="a8df1fdef3bf2566b7e30182ee2483bb9"></a>
+double&#160;</td><td class="memItemRight"><b>_FPS</b></td></tr>
+<tr class="memdesc:a8df1fdef3bf2566b7e30182ee2483bb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">measuring game speed <br /></td></tr>
 <tr class="inherit_header pub_attribs_class_c_base4618"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_c_base4618')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Private Attributes inherited from <a class="el" href="class_c_base4618.html">CBase4618</a></td></tr>
 <tr class="memitem:a126774d5342866e0a9982bb35c86fd5f inherit pub_attribs_class_c_base4618" id="r_a126774d5342866e0a9982bb35c86fd5f"><td class="memItemLeft">
 <a class="el" href="class_c_control.html">CControl</a>&#160;</td><td class="memItemRight"><b>_Control</b></td></tr>
@@ -124,10 +196,232 @@ cv::Mat&#160;</td><td class="memItemRight"><b>_Canvas</b></td></tr>
 <tr class="memdesc:a0b4045a6269240df1b9a7f519058c689 inherit pub_attribs_class_c_base4618"><td class="mdescLeft">&#160;</td><td class="mdescRight">this variable to set up the screen for games <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class. </p>
+<div class="textblock"><p>This class is a child of <a class="el" href="class_c_base4618.html" title="This class is base class for lab 4 to lab 9.">CBase4618</a> class. The class will support to for Pong Game. </p>
 <p>@Author Peter Ngo </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab2881c2fcfebc9829b6b00fe615c9712" name="ab2881c2fcfebc9829b6b00fe615c9712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2881c2fcfebc9829b6b00fe615c9712">&#9670;&#160;</a></span>CPong()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPong::CPong </td>
+          <td>(</td>
+          <td class="paramtype">cv::Size</td>          <td class="paramname"><span class="paramname"><em>Canvas_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comport</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function is to initialize the canvas and open comport. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Canvas_size</td><td>is width and height of screen </td></tr>
+    <tr><td class="paramname">comport</td><td>is port number of micro controller</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>nothing </dd></dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ae5c14ff09d074474ffd4f220b21dc00f" name="ae5c14ff09d074474ffd4f220b21dc00f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5c14ff09d074474ffd4f220b21dc00f">&#9670;&#160;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPong::draw </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is to create ball, paddles and display window. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing </dd></dl>
+
+</div>
+</div>
+<a id="ab7652242b52792e24365b80cd926e330" name="ab7652242b52792e24365b80cd926e330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7652242b52792e24365b80cd926e330">&#9670;&#160;</a></span>draw_thread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPong::draw_thread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_pong.html">CPong</a> *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is to run draw function seperately. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing </dd></dl>
+
+</div>
+</div>
+<a id="a63aaa8201251a3aca47219b32d295f1b" name="a63aaa8201251a3aca47219b32d295f1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63aaa8201251a3aca47219b32d295f1b">&#9670;&#160;</a></span>GPIO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPong::GPIO </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is to send data and get data to and from micro controller. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing </dd></dl>
+
+</div>
+</div>
+<a id="aee8275dea685ec9f5973618d63e7d728" name="aee8275dea685ec9f5973618d63e7d728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee8275dea685ec9f5973618d63e7d728">&#9670;&#160;</a></span>GPIO_thread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPong::GPIO_thread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_pong.html">CPong</a> *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is to run GPIO function seperately. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing </dd></dl>
+
+</div>
+</div>
+<a id="a8d1f1736decaa60a8b8e5b45798f9d72" name="a8d1f1736decaa60a8b8e5b45798f9d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d1f1736decaa60a8b8e5b45798f9d72">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPong::run </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function is to run game Pong. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing </dd></dl>
+
+</div>
+</div>
+<a id="abdf0d44329b40d14863ba134b031435a" name="abdf0d44329b40d14863ba134b031435a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdf0d44329b40d14863ba134b031435a">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPong::update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is to calculate position and range of joytick. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing </dd></dl>
+
+</div>
+</div>
+<a id="a0aa8bcff4fbe1aa4c0f5865d304c18b5" name="a0aa8bcff4fbe1aa4c0f5865d304c18b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aa8bcff4fbe1aa4c0f5865d304c18b5">&#9670;&#160;</a></span>update_thread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPong::update_thread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_pong.html">CPong</a> *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is to run update function seperately. </p>
+<dl class="section return"><dt>Returns</dt><dd>nothing </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_pong_8h_source.html">Pong.h</a></li>
+<li><b>Pong.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

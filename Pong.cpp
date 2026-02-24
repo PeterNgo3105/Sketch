@@ -49,43 +49,28 @@ void CPong::run() {
     _pos1 = _Canvas.size().width / 2;
     _pos2 = _Canvas.size().height / 2;
     _botY_mid_paddle_point = _Canvas.size().height / 2;
-    //std::thread thread1(&CPong::draw_thread, this);
+    
     std::thread thread2(&CPong::GPIO_thread,this);
     std::thread thread3(&CPong::update_thread,this);
-    //thread1.detach();
     thread2.detach();
     thread3.detach();
     while (_running) {
-       
-        // Set update rate at 10 Hz (100 ms per loop)
         
-        if (_kbhit()) {           // check if key pressed (non-blocking)
-            char ch = _getch();   // read key
-            if (ch == 113 || ch == 81) {       // ESC key ASCII = 27
-                while (_kbhit()) _getch();
-                _running = false;
-                _thread_exit = true;
-            }
-        }     
-        else
         {
             auto end_time = std::chrono::steady_clock::now() + std::chrono::duration<double, std::milli>(1000/FPS_SP);
-            //std::cout << "sleep time " << std::chrono::duration<double, std::milli>(end_time - std::chrono::steady_clock::now()).count() << "\n";
+           
             auto calc_start = std::chrono::steady_clock::now();
             draw();  
            
             std::this_thread::sleep_until(end_time);
             auto calc_end = std::chrono::steady_clock::now();
             std::chrono::duration<double> calc_elapsed = calc_end - calc_start;
-            //auto calc_elapsed = (std::chrono::duration_cast<std::chrono::seconds>(calc_end - calc_start));
+          
             double FPS = 1 / calc_elapsed.count();
             _FPS = std::round(FPS * 10000.0) / 10000.0;
             std::cout << "\nElapsed Time: " << calc_elapsed.count() << " FPS " << _FPS << "\n";
         }  
-        // Sleep if time remaining
-       
-        
-        
+
     }
 }
 void CPong::update() {
@@ -110,8 +95,8 @@ void CPong::update() {
         pos1_temp = _Canvas.size().width / 2;
         pos2_temp = _Canvas.size().height / 2;
     }
-    int pointX_speed = sqrt((speed/2)* (speed/ 2));
-    int pointY_speed = sqrt((speed / 2) * (speed / 2));
+    int pointX_speed = sqrt((speed)* (speed));
+    int pointY_speed = sqrt((speed) * (speed));
     //distance between ball and baddle
     collision = (_ball.x - closestX) * (_ball.x - closestX) +(_ball.y - closestY) * (_ball.y - closestY);
     collision2 = (_ball.x - bot_closestX) * (_ball.x - bot_closestX) +(_ball.y - bot_closestY) * (_ball.y - bot_closestY);
@@ -277,7 +262,7 @@ void CPong::update() {
         pos2_temp = _pos2;
         auto calc_end = std::chrono::steady_clock::now();
         float calc_elapsed = std::chrono::duration<float>(calc_end - calc_start).count();
-        //speed= _speed/calc_elapsed;
+        
 
     }
     // Sleep if time remaining
@@ -309,9 +294,7 @@ void CPong::draw() {
     cvui::trackbar(_Canvas, gui_position.x, gui_position.y, 190, &_speed, 100, 400);
     Close_position = cv::Point(30, 180);
     Reset_position = cv::Point(130, 180);
-    
 
-    //cv::imshow(CANVAS_NAME, _Canvas);
     if (cvui::button(_Canvas, Reset_position.x, Reset_position.y, 60, 40, "reset")) {
         _reset = true;
         cvui::update();
@@ -320,6 +303,14 @@ void CPong::draw() {
         _running = false;
         _thread_exit = true;
         cvui::update();
+    }
+    if (_kbhit()) {           // check if key pressed (non-blocking)
+        char ch = _getch();   // read key
+        if (ch == 113 || ch == 81) {       // ESC key ASCII = 27
+            while (_kbhit()) _getch();
+            _running = false;
+            _thread_exit = true;
+        }
     }
 
     _bot_baddle = cv::Rect(0, _botY_mid_paddle_point - bar_half_length, 4, 80);
@@ -338,9 +329,7 @@ void CPong::draw() {
         cvui::window(_Canvas, gui_position.x, gui_position.y, 220, 170, "Game Over");
         gui_position = cv::Point(450, 300);
         cvui::text(_Canvas, gui_position.x, gui_position.y, "Game Over");
-        //cvui::update();
 
-        //_reset = true;
     }
     cv::imshow(CANVAS_NAME, _Canvas);
 
@@ -360,13 +349,13 @@ void CPong::draw() {
     _Canvas.setTo(cv::Scalar(0, 0, 0));
     cvui::update();
     cv::waitKey(1);
-    //std::this_thread::sleep_until(end_time);
 }
 
 void CPong::GPIO() {
     auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(1000 / FPS_SP);
     control.get_data(D_type, Reset_channel, reset_val);
-    if (control.get_button(reset_val)) {
+    
+    if(reset_val==0){
         _reset = true;
     }
     control.get_data(D_type, D_channel, digital_val);
@@ -375,9 +364,8 @@ void CPong::GPIO() {
         if (control.get_button(digital_val)) {
             _start_button = true;
         }
-
     }
-    
+  
     control.get_data(A_type, dirY_channel, dirY_val);
     _pointY_dir_percent = static_cast<int>(control.get_analog(dirY_val));
     // Sleep if time remaining
@@ -390,27 +378,22 @@ CPong::CPong() {
 void CPong::update_thread(CPong* ptr) {
     while (ptr->_thread_exit == false)
     {
-        //std::cout << "update running\n";
+
         ptr->update();
-        //Sleep(300);
+
     }
     std::cout << "update exit\n";
 }
 void CPong::draw_thread(CPong* ptr) {
     while (ptr->_thread_exit == false)
     {
-        //std::cout << "draw running\n";
         ptr->draw();
-        //cv::waitKey(1);
-        //Sleep(300);
     }
     std::cout << "draw exit\n";
 }
 void CPong::GPIO_thread(CPong* ptr) {
     while (ptr->_thread_exit == false)
     {
-        //std::cout << "GPIO running\n";
-        //Sleep(300);
         ptr->GPIO();
     }
     std::cout << "GPIO exit\n";

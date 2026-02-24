@@ -2,13 +2,43 @@
 \hypertarget{_pong_8h_source}{}\label{_pong_8h_source}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CBase4618.h"{}}}
-\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_c_pong}{CPong}}\ :\ \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}\ \{}
-\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update();}
-\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ draw();}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <conio.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CBase4618.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }CPong\ :\ \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ CPong();}
+\DoxyCodeLine{00021\ \ \ \ \ CPong(cv::Size\ Canvas\_size,\ \textcolor{keywordtype}{int}\ comport);}
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_pong_a8d1f1736decaa60a8b8e5b45798f9d72}{run}}();}
+\DoxyCodeLine{00029\ \ \ \ \ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ \doxymbox{\hyperlink{class_c_control}{CControl}}\ \doxymbox{\hyperlink{class_c_pong_ab0d533142904be3430a09dded34fc6fe}{control}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_pong_a4cf1331fa209cf5df9b8d6372ecc5733}{\_reset}}\ =\ \textcolor{keyword}{false};\ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_a565d7c5b3cb93a6153fe1a2a4fd98541}{\_pointY\_dir\_percent}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_a7d78bdd18327a2bdce6459835dbdcbf8}{\_pointY\_mid\_position}}\ =\ 0;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_a5e649cf362916a2771fe092afde6308c}{\_start\_button}}\ =\ \textcolor{keyword}{false};\ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//int\ \_level\_up\ =\ 0;\ \ \ \ \ \ \ \ ///<\ speed\ up\ when\ the\ ball\ colision\ with\ the\ baddle}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_ae8f7fda08e039ebced89639ebc09a1a8}{\_pos1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_ae2880c63f39e14be2cf8760da27bf17f}{\_pos2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ cv::Point\ \doxymbox{\hyperlink{class_c_pong_acbdb6034acbc8ff53d038c3715b95b54}{\_ball}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ cv::Rect\ \doxymbox{\hyperlink{class_c_pong_a0ab747f3987d94f7a04202a6857dec1a}{\_player\_baddle}};}
+\DoxyCodeLine{00042\ \ \ \ \ cv::Rect\ \doxymbox{\hyperlink{class_c_pong_a0b72310ec92246f7d325d529aff3c1d5}{\_bot\_baddle}};\ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_a3fb3c882019595a169c27fc9e91e587a}{\_botY\_mid\_paddle\_point}};\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_aa2fbf42ac4389739f405030d8e2a15eb}{\_player\_score}}\ =\ 0;\ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_aab3c2fa0e13847ad0d57ecffad406f82}{\_computer\_score}}\ =\ 0;\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_a5cea30cb5331a61e9b00a191959cfb81}{\_ball\_size}}\ =\ 30;\ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_pong_ad9c8b7a1a22df098cd1dd74f879d50f9}{\_speed}}\ =\ 400;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_pong_ad0f010912a14ec216ca5c36d9caf37e7}{\_running}}\ =\ \textcolor{keyword}{true};\ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_pong_ae578ab1f345c5c475c2cd4186b13adba}{\_thread\_exit}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{class_c_pong_a8df1fdef3bf2566b7e30182ee2483bb9}{\_FPS}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_pong_abdf0d44329b40d14863ba134b031435a}{update}}();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f}{draw}}();}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_pong_a63aaa8201251a3aca47219b32d295f1b}{GPIO}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_pong_a0aa8bcff4fbe1aa4c0f5865d304c18b5}{update\_thread}}(CPong*\ ptr);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_pong_ab7652242b52792e24365b80cd926e330}{draw\_thread}}(CPong*\ ptr);}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_pong_aee8275dea685ec9f5973618d63e7d728}{GPIO\_thread}}(CPong*\ ptr);}
+\DoxyCodeLine{00087\ \};}
 
 \end{DoxyCode}

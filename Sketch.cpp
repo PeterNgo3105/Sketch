@@ -56,6 +56,7 @@ void CSketch::run() {
             if (ch == 113 || ch == 81) {       // ESC key ASCII = 27
                 while (_kbhit()) _getch();
                 running = false;
+               
             }
         }
         else if (cvui::button(_Canvas, Close_position.x, Close_position.y, 60, 40, "Exit")) {

@@ -30,6 +30,7 @@
 #include "CControl.h"
 #include "CSketch.h"
 #include "Pong.h"
+#include "CSpaceInvaderGame.h"
 
 // Must include Windows.h after Winsock2.h, so Serial must be included after Client/Server
 #include "Serial.h" 
@@ -604,6 +605,8 @@ void lab5()
 ////////////////////////////////////////////////////////////////
 void lab6()
 {
+    CSpaceInvaderGame space(cv::Size(1000, 600), 3);
+    space.run();
 }
 
 void print_menu()

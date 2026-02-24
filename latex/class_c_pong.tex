@@ -2,7 +2,7 @@
 \hypertarget{class_c_pong}{}\label{class_c_pong}\index{CPong@{CPong}}
 
 
-This class.  
+This class is a child of \doxylink{class_c_base4618}{CBase4618} class. The class will support to for Pong Game.  
 
 
 
@@ -18,13 +18,85 @@ Inheritance diagram for CPong:\+\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_c_pong_a6b6f15523eac9975e693c64b033c25e7}\label{class_c_pong_a6b6f15523eac9975e693c64b033c25e7} 
-virtual void {\bfseries update} ()
+\doxymbox{\hyperlink{class_c_pong_ab2881c2fcfebc9829b6b00fe615c9712}{CPong}} (cv::\+\+Size Canvas\+\_\+size, int comport)
+\begin{DoxyCompactList}\small\item\em This function is to initialize the canvas and open comport. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_pong_a8d1f1736decaa60a8b8e5b45798f9d72}{run}} ()
+\begin{DoxyCompactList}\small\item\em This function is to run game Pong. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_c_pong_ad8fabbd2ea8f321763391265cb0ff8bb}\label{class_c_pong_ad8fabbd2ea8f321763391265cb0ff8bb} 
-virtual void {\bfseries draw} ()
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Additional Inherited Members}
+virtual void \doxymbox{\hyperlink{class_c_pong_abdf0d44329b40d14863ba134b031435a}{update}} ()
+\begin{DoxyCompactList}\small\item\em This function is to calculate position and range of joytick. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f}{draw}} ()
+\begin{DoxyCompactList}\small\item\em This function is to create ball, paddles and display window. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_pong_a63aaa8201251a3aca47219b32d295f1b}{GPIO}} ()
+\begin{DoxyCompactList}\small\item\em This function is to send data and get data to and from micro controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{class_c_pong_a0aa8bcff4fbe1aa4c0f5865d304c18b5}{update\+\_\+thread}} (\doxymbox{\hyperlink{class_c_pong}{CPong}} \texorpdfstring{$\ast$}{*}ptr)
+\begin{DoxyCompactList}\small\item\em This function is to run update function seperately. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_c_pong_ab7652242b52792e24365b80cd926e330}{draw\+\_\+thread}} (\doxymbox{\hyperlink{class_c_pong}{CPong}} \texorpdfstring{$\ast$}{*}ptr)
+\begin{DoxyCompactList}\small\item\em This function is to run draw function seperately. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_c_pong_aee8275dea685ec9f5973618d63e7d728}{GPIO\+\_\+thread}} (\doxymbox{\hyperlink{class_c_pong}{CPong}} \texorpdfstring{$\ast$}{*}ptr)
+\begin{DoxyCompactList}\small\item\em This function is to run GPIO function seperately. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_pong_ab0d533142904be3430a09dded34fc6fe}\label{class_c_pong_ab0d533142904be3430a09dded34fc6fe} 
+\doxymbox{\hyperlink{class_c_control}{CControl}} {\bfseries control}
+\begin{DoxyCompactList}\small\item\em this variable to get access to \doxylink{class_c_control}{CControl} class \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a4cf1331fa209cf5df9b8d6372ecc5733}\label{class_c_pong_a4cf1331fa209cf5df9b8d6372ecc5733} 
+bool {\bfseries \+\_\+reset} = false
+\begin{DoxyCompactList}\small\item\em clear the game and reset game back to zero \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a565d7c5b3cb93a6153fe1a2a4fd98541}\label{class_c_pong_a565d7c5b3cb93a6153fe1a2a4fd98541} 
+int {\bfseries \+\_\+point\+Y\+\_\+dir\+\_\+percent}
+\begin{DoxyCompactList}\small\item\em joystick y direction in percentage \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a7d78bdd18327a2bdce6459835dbdcbf8}\label{class_c_pong_a7d78bdd18327a2bdce6459835dbdcbf8} 
+int {\bfseries \+\_\+point\+Y\+\_\+mid\+\_\+position} = 0
+\begin{DoxyCompactList}\small\item\em mid point of player baddle \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a5e649cf362916a2771fe092afde6308c}\label{class_c_pong_a5e649cf362916a2771fe092afde6308c} 
+int {\bfseries \+\_\+start\+\_\+button} = false
+\begin{DoxyCompactList}\small\item\em game start when this button is pressed \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ae8f7fda08e039ebced89639ebc09a1a8}\label{class_c_pong_ae8f7fda08e039ebced89639ebc09a1a8} 
+int {\bfseries \+\_\+pos1}
+\begin{DoxyCompactList}\small\item\em the ball x position \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ae2880c63f39e14be2cf8760da27bf17f}\label{class_c_pong_ae2880c63f39e14be2cf8760da27bf17f} 
+int {\bfseries \+\_\+pos2}
+\begin{DoxyCompactList}\small\item\em the ball y position \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_acbdb6034acbc8ff53d038c3715b95b54}\label{class_c_pong_acbdb6034acbc8ff53d038c3715b95b54} 
+cv::\+\+Point {\bfseries \+\_\+ball}
+\begin{DoxyCompactList}\small\item\em pong ball \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a0ab747f3987d94f7a04202a6857dec1a}\label{class_c_pong_a0ab747f3987d94f7a04202a6857dec1a} 
+cv::\+\+Rect {\bfseries \+\_\+player\+\_\+baddle}
+\begin{DoxyCompactList}\small\item\em rectanle paddle for player \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a0b72310ec92246f7d325d529aff3c1d5}\label{class_c_pong_a0b72310ec92246f7d325d529aff3c1d5} 
+cv::\+\+Rect {\bfseries \+\_\+bot\+\_\+baddle}
+\begin{DoxyCompactList}\small\item\em rectanle paddle for computer \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a3fb3c882019595a169c27fc9e91e587a}\label{class_c_pong_a3fb3c882019595a169c27fc9e91e587a} 
+int {\bfseries \+\_\+bot\+Y\+\_\+mid\+\_\+paddle\+\_\+point}
+\begin{DoxyCompactList}\small\item\em middle point opf computer paddle \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_aa2fbf42ac4389739f405030d8e2a15eb}\label{class_c_pong_aa2fbf42ac4389739f405030d8e2a15eb} 
+int {\bfseries \+\_\+player\+\_\+score} = 0
+\begin{DoxyCompactList}\small\item\em tracking score for player \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_aab3c2fa0e13847ad0d57ecffad406f82}\label{class_c_pong_aab3c2fa0e13847ad0d57ecffad406f82} 
+int {\bfseries \+\_\+computer\+\_\+score} = 0
+\begin{DoxyCompactList}\small\item\em tracking score for computer \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a5cea30cb5331a61e9b00a191959cfb81}\label{class_c_pong_a5cea30cb5331a61e9b00a191959cfb81} 
+int {\bfseries \+\_\+ball\+\_\+size} = 30
+\begin{DoxyCompactList}\small\item\em ping pong ball size setup \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ad9c8b7a1a22df098cd1dd74f879d50f9}\label{class_c_pong_ad9c8b7a1a22df098cd1dd74f879d50f9} 
+int {\bfseries \+\_\+speed} = 400
+\begin{DoxyCompactList}\small\item\em speed setup \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ad0f010912a14ec216ca5c36d9caf37e7}\label{class_c_pong_ad0f010912a14ec216ca5c36d9caf37e7} 
+bool {\bfseries \+\_\+running} = true
+\begin{DoxyCompactList}\small\item\em while loop variable \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ae578ab1f345c5c475c2cd4186b13adba}\label{class_c_pong_ae578ab1f345c5c475c2cd4186b13adba} 
+bool {\bfseries \+\_\+thread\+\_\+exit} = false
+\begin{DoxyCompactList}\small\item\em stop all thread when it is true \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a8df1fdef3bf2566b7e30182ee2483bb9}\label{class_c_pong_a8df1fdef3bf2566b7e30182ee2483bb9} 
+double {\bfseries \+\_\+\+FPS}
+\begin{DoxyCompactList}\small\item\em measuring game speed \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes inherited from \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -35,10 +107,132 @@ cv::\+\+Mat {\bfseries \+\_\+\+Canvas}
 
 
 \doxysubsection{Detailed Description}
-This class. 
+This class is a child of \doxylink{class_c_base4618}{CBase4618} class. The class will support to for Pong Game. 
 
 @\+Author Peter Ngo 
 
-The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\label{doc-constructors}
+\Hypertarget{class_c_pong_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_c_pong_ab2881c2fcfebc9829b6b00fe615c9712}\index{CPong@{CPong}!CPong@{CPong}}
+\index{CPong@{CPong}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{CPong()}{CPong()}}
+{\footnotesize\ttfamily \label{class_c_pong_ab2881c2fcfebc9829b6b00fe615c9712} 
+CPong::\+\+CPong (\begin{DoxyParamCaption}\item[{cv::\+\+Size}]{Canvas\+\_\+size}{, }\item[{int}]{comport}{}\end{DoxyParamCaption})}
+
+
+
+This function is to initialize the canvas and open comport. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Canvas\+\_\+size} & is width and height of screen \\
+\hline
+{\em comport} & is port number of micro controller\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_pong_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f}\index{CPong@{CPong}!draw@{draw}}
+\index{draw@{draw}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f} 
+void CPong::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+This function is to create ball, paddles and display window. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_pong_ab7652242b52792e24365b80cd926e330}\index{CPong@{CPong}!draw\_thread@{draw\_thread}}
+\index{draw\_thread@{draw\_thread}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{draw\_thread()}{draw\_thread()}}
+{\footnotesize\ttfamily \label{class_c_pong_ab7652242b52792e24365b80cd926e330} 
+void CPong::\+draw\+\_\+thread (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_c_pong}{CPong}} \texorpdfstring{$\ast$}{*}}]{ptr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+This function is to run draw function seperately. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_pong_a63aaa8201251a3aca47219b32d295f1b}\index{CPong@{CPong}!GPIO@{GPIO}}
+\index{GPIO@{GPIO}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{GPIO()}{GPIO()}}
+{\footnotesize\ttfamily \label{class_c_pong_a63aaa8201251a3aca47219b32d295f1b} 
+void CPong::\+\+GPIO (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+This function is to send data and get data to and from micro controller. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_pong_aee8275dea685ec9f5973618d63e7d728}\index{CPong@{CPong}!GPIO\_thread@{GPIO\_thread}}
+\index{GPIO\_thread@{GPIO\_thread}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{GPIO\_thread()}{GPIO\_thread()}}
+{\footnotesize\ttfamily \label{class_c_pong_aee8275dea685ec9f5973618d63e7d728} 
+void CPong::\+\+GPIO\+\_\+thread (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_c_pong}{CPong}} \texorpdfstring{$\ast$}{*}}]{ptr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+This function is to run GPIO function seperately. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_pong_a8d1f1736decaa60a8b8e5b45798f9d72}\index{CPong@{CPong}!run@{run}}
+\index{run@{run}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_c_pong_a8d1f1736decaa60a8b8e5b45798f9d72} 
+void CPong::\+run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+This function is to run game Pong. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_pong_abdf0d44329b40d14863ba134b031435a}\index{CPong@{CPong}!update@{update}}
+\index{update@{update}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_c_pong_abdf0d44329b40d14863ba134b031435a} 
+void CPong::\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+This function is to calculate position and range of joytick. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_pong_a0aa8bcff4fbe1aa4c0f5865d304c18b5}\index{CPong@{CPong}!update\_thread@{update\_thread}}
+\index{update\_thread@{update\_thread}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{update\_thread()}{update\_thread()}}
+{\footnotesize\ttfamily \label{class_c_pong_a0aa8bcff4fbe1aa4c0f5865d304c18b5} 
+void CPong::\+update\+\_\+thread (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_c_pong}{CPong}} \texorpdfstring{$\ast$}{*}}]{ptr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+This function is to run update function seperately. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
 \item 
-Pong.\+h\end{DoxyCompactItemize}
+Pong.\+h\item 
+Pong.\+cpp\end{DoxyCompactItemize}

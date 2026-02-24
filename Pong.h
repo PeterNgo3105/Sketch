@@ -2,7 +2,7 @@
 #include <conio.h>
 #include "stdafx.h"
 #include "CBase4618.h"
-/** @brief This class 
+/** @brief This class is a child of CBase4618 class. The class will support to for Pong Game
 *
 *
 * @Author Peter Ngo
@@ -19,13 +19,14 @@ public:
 	*
 	*/
 	CPong(cv::Size Canvas_size, int comport);
-	//virtual void update();
-	//virtual void draw();
+	
+	/** @brief This function is to run game Pong
+	*
+	* @return nothing
+	*
+	*/
 	void run();
-	//void GPIO();
-	//static void update_thread(CPong* ptr);
-	//static void draw_thread(CPong* ptr);
-	//static void GPIO_thread(CPong* ptr);
+	
 
 private:
 	CControl control;		///< this variable to get access to CControl class
