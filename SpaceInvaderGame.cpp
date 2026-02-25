@@ -18,7 +18,10 @@ int R_channel = 32;
 int R_val = 1;
 int Horizontal_dir_channel = 2;
 int Horizontal_val;
-
+int enemies_moving_Forward = 10;
+int enemies_moving_Backward = 22;
+int initial = 0;
+int loop = 0;
 
 CSpaceInvaderGame::CSpaceInvaderGame(cv::Size Canva_size, int comport) {
     control.init_com(comport);
@@ -82,6 +85,78 @@ void CSpaceInvaderGame::draw() {
             _thread_exit = true;
         }
     }
+   Enemies e;
+    if (initial == 0) 
+    {
+        enemies.clear();
+        for (int pos = 0; pos < 10; pos++)
+        {
+            e.speed = 2;
+            e.alive = true;
+            e.position = cv::Point((45 + pos * 100) + e.speed, 100); 
+
+            enemies.push_back(e);
+        }
+        initial = 1;
+    }
+    
+    if (enemies_moving_Forward <= 20) 
+    {
+        for (auto& e : enemies) {
+            e.position.x += e.speed;
+        }
+   
+        enemies_moving_Forward++;
+    }
+    else if (enemies_moving_Forward > 20 && enemies_moving_Backward ==22 && enemies_moving_Forward != 22) {
+        enemies_moving_Backward = 0;
+        enemies_moving_Forward = 22;
+    }
+
+    if (enemies_moving_Backward <= 20)
+    {  
+        for (auto& e : enemies) {
+            e.position.x -= e.speed;
+        }  
+        enemies_moving_Backward++;
+    }
+    else if(enemies_moving_Backward > 20 && enemies_moving_Forward == 22 && enemies_moving_Backward!=22)
+    {
+        enemies_moving_Forward = 0;
+        enemies_moving_Backward = 22;
+
+    }
+    
+    for (int print_C = 0; print_C < enemies.size(); print_C++) {
+        cv::Rect enemy_ship = cv::Rect(enemies[print_C].position.x - ship_size, enemies[print_C].position.y, ship_size * 2, 5);
+        cv::rectangle(_Canvas, enemy_ship, cv::Scalar(255, 255, 255), 4, 8, 0);
+    }
+  loop++;
+    
+     if (loop ==10 && !enemies.empty()) {
+        // Random enemy shoots
+        int idx = rand() % enemies.size();
+        missile m;
+        m.position.x = enemies[idx].position.x + ship_size/2;
+        m.position.y = enemies[idx].position.y; // start below enemy
+        Missile.push_back(m);
+        loop = 0;
+        
+    }
+    for (auto& m : Missile) {
+        m.position.y += m.speed; // move downward
+    }
+
+    // Remove missiles that leave the screen
+    Missile.erase(
+        std::remove_if(Missile.begin(), Missile.end(),
+            [&](missile& m) { return m.position.y > _Canvas.rows; }),
+        Missile.end()
+    );
+    for (const auto& m : Missile) {
+        cv::circle(_Canvas, cv::Point(m.position.x, m.position.y), 5, cv::Scalar(0, 255, 255), -1);
+    }
+    
     _player_Ship = cv::Rect(_point_horizontal_mid - ship_size, _Canvas.size().height -5, ship_size*2, 5);
     cv::rectangle(_Canvas, _player_Ship, cv::Scalar(255, 255, 255), 4, 8, 0);
     _gun = cv::Rect(_point_horizontal_mid - 2, _Canvas.size().height - 7, 4, 4);
@@ -96,7 +171,7 @@ void CSpaceInvaderGame::draw() {
 /////   GPIO Function
 ////////////////////////////////////////////
 void CSpaceInvaderGame::GPIO() {
-    auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(1000 / Space_FPS_SP);
+    //auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(1000 / Space_FPS_SP);
     control.get_data(R_Digital, R_channel, R_val);
 
     if (R_val == 0) {
@@ -113,7 +188,7 @@ void CSpaceInvaderGame::GPIO() {
     control.get_data(analog, Horizontal_dir_channel, Horizontal_val);
     _ship_position_percentage = static_cast<int>(control.get_analog(Horizontal_val));
     // Sleep if time remaining
-    std::this_thread::sleep_until(end_time);
+    //std::this_thread::sleep_until(end_time);
 }
 ////////////////////////////////////////////
 /////   Update Function
