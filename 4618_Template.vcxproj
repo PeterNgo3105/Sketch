@@ -98,6 +98,7 @@
     <ClInclude Include="CSketch.h" />
     <ClInclude Include="CSpaceInvaderGame.h" />
     <ClInclude Include="cvui.h" />
+    <ClInclude Include="Pong.h" />
     <ClInclude Include="Serial.h" />
     <ClInclude Include="server.h" />
     <ClInclude Include="stdafx.h" />
@@ -105,6 +106,10 @@
   <ItemGroup>
     <ClCompile Include="4618_Template.cpp" />
     <ClCompile Include="CControl.cpp" />
+    <ClCompile Include="CInvader.cpp" />
+    <ClCompile Include="CMissile.cpp" />
+    <ClCompile Include="CShip.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Pong.cpp" />
     <ClCompile Include="Serial.cpp" />
     <ClCompile Include="server.cpp" />

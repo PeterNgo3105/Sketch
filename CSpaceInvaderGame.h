@@ -1,16 +1,19 @@
 #pragma once
 #include "CBase4618.h"
+#include "CGameObject.h"
+#include "CMissile.h"
+#include "CInvader.h"
 
-struct Enemies {
+/*struct Enemies {
 	cv::Point position;
 	int speed;
 	bool alive;
-};
-struct missile {
+};*/
+/*struct missile {
 	cv::Point position;
 	int speed =5;
 	bool alive ;
-};
+};*/
 /** @brief This class is a child of CBase4618 class. The class will support to sketch and draw on Canva
 *
 *
@@ -29,8 +32,8 @@ private:
 	cv::Rect _player_Ship;				///< object as play firing ship
 	cv::Rect _gun;						///< ship gun 
 	cv::Rect _enemies;					///< enermy ships
-	std::vector<Enemies>  enemies;		///< vector enermies spawn
-	std::vector<missile> Missile;			///< vector missle
+	std::vector<CInvader>  enemies;		///< vector enermies spawn
+	std::vector<CMissile> Missile;		///< vector missle
 	/** @brief This function is to calculate position and range of joytick.
 	*
 	* @return nothing

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CSpaceInvaderGame.h"
-
+#include "CShip.h"
 #include "cvui.h"
 #include <conio.h>
 
@@ -8,12 +8,14 @@
 
 cv::Point Space_Close_position;
 cv::Point Space_Reset_position;
+cv::Point position;
 
-
+bool fire;
 int Space_FPS_SP = 34;
 int ship_size = 20;
 int R_Digital = 0;
 int analog = 1;
+int Shoot_Digital = 0, Digital_channel = 33, digi_val = 1;
 int R_channel = 32;
 int R_val = 1;
 int Horizontal_dir_channel = 2;
@@ -57,6 +59,8 @@ void CSpaceInvaderGame::run() {
 /////   Draw Function
 ////////////////////////////////////////////
 void CSpaceInvaderGame::draw() {
+    CInvader e;
+    CMissile m;
     // GUI Menu
     //auto end_time = std::chrono::steady_clock::now() + std::chrono::duration<double, std::milli>(1000 / FPS_SP);
     int score = 0; // example score
@@ -85,26 +89,29 @@ void CSpaceInvaderGame::draw() {
             _thread_exit = true;
         }
     }
-   Enemies e;
+
     if (initial == 0) 
     {
         enemies.clear();
         for (int pos = 0; pos < 10; pos++)
         {
-            e.speed = 2;
-            e.alive = true;
-            e.position = cv::Point((45 + pos * 100) + e.speed, 100); 
-
+            position = cv::Point((30 + pos * 100), 100);
+            e.set_pos(position);
             enemies.push_back(e);
         }
         initial = 1;
     }
-    
+   
     if (enemies_moving_Forward <= 20) 
     {
         for (auto& e : enemies) {
-            e.position.x += e.speed;
+            e.move(1);
         }
+        /*for (auto& e : enemies) {
+            position = e.get_pos();
+            position.x += 2;
+            e.set_pos(position);
+        }*/
    
         enemies_moving_Forward++;
     }
@@ -116,52 +123,46 @@ void CSpaceInvaderGame::draw() {
     if (enemies_moving_Backward <= 20)
     {  
         for (auto& e : enemies) {
-            e.position.x -= e.speed;
-        }  
+            e.move(-1);
+        }
+        /*for (auto& e : enemies) {
+            position = e.get_pos();
+            position.x -= 2;
+            e.set_pos(position);
+        }  */
         enemies_moving_Backward++;
     }
     else if(enemies_moving_Backward > 20 && enemies_moving_Forward == 22 && enemies_moving_Backward!=22)
     {
         enemies_moving_Forward = 0;
-        enemies_moving_Backward = 22;
-
+        enemies_moving_Backward = 22;       
     }
-    
-    for (int print_C = 0; print_C < enemies.size(); print_C++) {
-        cv::Rect enemy_ship = cv::Rect(enemies[print_C].position.x - ship_size, enemies[print_C].position.y, ship_size * 2, 5);
-        cv::rectangle(_Canvas, enemy_ship, cv::Scalar(255, 255, 255), 4, 8, 0);
-    }
-  loop++;
-    
+   
      if (loop ==10 && !enemies.empty()) {
         // Random enemy shoots
         int idx = rand() % enemies.size();
-        missile m;
-        m.position.x = enemies[idx].position.x + ship_size/2;
-        m.position.y = enemies[idx].position.y; // start below enemy
+        position = enemies[idx].get_pos();
+        position.x = position.x + 20;
+        m.set_pos(position);
         Missile.push_back(m);
-        loop = 0;
-        
+        loop = 0;   
     }
-    for (auto& m : Missile) {
-        m.position.y += m.speed; // move downward
-    }
+     for (auto& m : Missile) {
+         position = m.get_pos();
+         position.y += 5;
+         m.set_pos(position);
+     }
+     loop++;
+   
+    for (int m_count = 0; m_count < Missile.size(); m_count++)
+        Missile[m_count].draw(_Canvas);
 
-    // Remove missiles that leave the screen
-    Missile.erase(
-        std::remove_if(Missile.begin(), Missile.end(),
-            [&](missile& m) { return m.position.y > _Canvas.rows; }),
-        Missile.end()
-    );
-    for (const auto& m : Missile) {
-        cv::circle(_Canvas, cv::Point(m.position.x, m.position.y), 5, cv::Scalar(0, 255, 255), -1);
-    }
-    
-    _player_Ship = cv::Rect(_point_horizontal_mid - ship_size, _Canvas.size().height -5, ship_size*2, 5);
-    cv::rectangle(_Canvas, _player_Ship, cv::Scalar(255, 255, 255), 4, 8, 0);
-    _gun = cv::Rect(_point_horizontal_mid - 2, _Canvas.size().height - 7, 4, 4);
-    cv::rectangle(_Canvas, _gun, cv::Scalar(255, 255, 255), 4, 8, 0);
-
+    for (int e_count = 0; e_count < enemies.size(); e_count++)
+        enemies[e_count].draw(_Canvas);
+    CShip s;
+    cv::Point S_pos = cv::Point(_point_horizontal_mid - ship_size, _Canvas.size().height - 5);
+        s.set_pos(S_pos);
+        s.draw(_Canvas);
     
     cv::imshow(CANVAS_NAME, _Canvas);
     _Canvas.setTo(cv::Scalar(0, 0, 0));
@@ -177,13 +178,15 @@ void CSpaceInvaderGame::GPIO() {
     if (R_val == 0) {
         _reset = true;
     }
-    /*control.get_data(D_type, D_channel, digital_val);
-    if (_computer_score < 5 && _player_score < 5)
-    {
-        if (control.get_button(digital_val)) {
-            _start_button = true;
+    control.get_data(Shoot_Digital, Digital_channel, digi_val);
+    
+        if (control.get_button(digi_val)) {
+            fire = true;
         }
-    }*/
+        else
+        {
+            fire = false;
+        }
 
     control.get_data(analog, Horizontal_dir_channel, Horizontal_val);
     _ship_position_percentage = static_cast<int>(control.get_analog(Horizontal_val));
@@ -204,5 +207,12 @@ void CSpaceInvaderGame::update()
     if (_point_horizontal_mid + ship_size > _Canvas.size().width) {
         _point_horizontal_mid = _Canvas.cols - ship_size;
     }
-    
+    // Remove missiles that leave the screen
+    Missile.erase(
+        std::remove_if(Missile.begin(), Missile.end(),
+            [&](CMissile& m)
+            { position = m.get_pos();
+    return position.y > _Canvas.rows; }),
+        Missile.end()
+    );
 }
