@@ -3,6 +3,6 @@
 
 
 CInvader::CInvader() {
-	_shape = cv::Rect(_position.x - 20, _position.y + 2, 40, 5);
+	_shape = cv::Rect(_position.x - 30, _position.y + 2, 60, 10);
 	_lives = 1;
 }

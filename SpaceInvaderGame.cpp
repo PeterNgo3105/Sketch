@@ -9,6 +9,13 @@
 cv::Point Space_Close_position;
 cv::Point Space_Reset_position;
 cv::Point position;
+cv::Point pos_temp = cv::Point(0,0);
+cv::Point2f vel;
+CShip S;
+CShipMissile SM;
+CInvader e;
+CMissile m;
+
 
 bool fire;
 int Space_FPS_SP = 34;
@@ -24,17 +31,51 @@ int enemies_moving_Forward = 10;
 int enemies_moving_Backward = 22;
 int initial = 0;
 int loop = 0;
+int moving;
+int moving_temp = 0;
+int score = 0;
+int raw;
+const int center = 2048;
+const int deadZone = 100;
+float ship_horizontal = 0;
+
+
 
 CSpaceInvaderGame::CSpaceInvaderGame(cv::Size Canva_size, int comport) {
     control.init_com(comport);
     _Canvas = cv::Mat::zeros(Canva_size, CV_8UC3);
+}
+void CSpaceInvaderGame::init() {
+    CInvader e;
+    enemies.clear();
+    for (int pos = 0; pos < 30; pos++)
+    {
+        if (pos <10)
+        {
+            position = cv::Point((30 + (pos%10) * 100), 100);
+            e.set_pos(position);
+        }
+        else if (pos >= 10 && pos < 20)
+        {
+            position = cv::Point((30 + (pos%10) * 100), 150);
+            e.set_pos(position);
+        }
+        else if (pos >= 20 && pos < 30)
+        {
+            position = cv::Point((30 + (pos % 10) * 100), 200);
+            e.set_pos(position);
+        }
+        
+        enemies.push_back(e);
+    }
+
 }
 ////////////////////////////////////////////
 /////Run function
 ////////////////////////////////////////////
 void CSpaceInvaderGame::run() {
     cvui::init(CANVAS_NAME);
-    
+    init();
     while (_running) {
 
         {
@@ -59,23 +100,32 @@ void CSpaceInvaderGame::run() {
 /////   Draw Function
 ////////////////////////////////////////////
 void CSpaceInvaderGame::draw() {
-    CInvader e;
-    CMissile m;
+    
     // GUI Menu
     //auto end_time = std::chrono::steady_clock::now() + std::chrono::duration<double, std::milli>(1000 / FPS_SP);
-    int score = 0; // example score
-    std::string scoreText =  std::to_string(score);
-    cv::putText(_Canvas, "Score", cv::Point(10, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
-    cv::putText(_Canvas, scoreText, cv::Point(120, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 0), 2);
-    cv::putText(_Canvas, "Live", cv::Point(700, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
-    //cv::putText(_Canvas, "Live", cv::Point(_Canvas.size().width-10, 300), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
-    Space_Close_position = cv::Point(30, 180);
-    Space_Reset_position = cv::Point(130, 180);
-
-    if (cvui::button(_Canvas, Space_Reset_position.x, Space_Reset_position.y, 60, 40, "reset")) {
-        _reset = true;
-        cvui::update();
+    std::string scoreText = std::to_string(score);
+    Space_Close_position = cv::Point(10, 10);
+    if (S.get_lives() > 0)
+    {
+        
+        Space_Reset_position = cv::Point(70, 10);
+        cv::putText(_Canvas, "Score", cv::Point(150, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
+        cv::putText(_Canvas, scoreText, cv::Point(250, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 0), 2);
+        cv::putText(_Canvas, "Live", cv::Point(700, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
+        cv::putText(_Canvas, std::to_string(S.get_lives()), cv::Point(800, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 255), 2);
+        cv::putText(_Canvas, "Missile", cv::Point(350, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
+        //cv::putText(_Canvas, std::to_string(Missile.size()), cv::Point(400, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 255), 2);
+        cv::putText(_Canvas, std::to_string(ShipMissile.size()), cv::Point(450, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 255), 2);
+        if (cvui::button(_Canvas, Space_Reset_position.x, Space_Reset_position.y, 60, 40, "reset")) {
+            _reset = true;
+            cvui::update();
+        }
     }
+    
+    
+
+    
+    
     if (cvui::button(_Canvas, Space_Close_position.x, Space_Close_position.y, 60, 40, "Exit")) {
         _running = false;
         _thread_exit = true;
@@ -89,81 +139,52 @@ void CSpaceInvaderGame::draw() {
             _thread_exit = true;
         }
     }
-
-    if (initial == 0) 
-    {
-        enemies.clear();
-        for (int pos = 0; pos < 10; pos++)
-        {
-            position = cv::Point((30 + pos * 100), 100);
-            e.set_pos(position);
-            enemies.push_back(e);
-        }
-        initial = 1;
-    }
-   
-    if (enemies_moving_Forward <= 20) 
-    {
-        for (auto& e : enemies) {
-            e.move(1);
-        }
-        /*for (auto& e : enemies) {
-            position = e.get_pos();
-            position.x += 2;
-            e.set_pos(position);
-        }*/
-   
-        enemies_moving_Forward++;
-    }
-    else if (enemies_moving_Forward > 20 && enemies_moving_Backward ==22 && enemies_moving_Forward != 22) {
-        enemies_moving_Backward = 0;
-        enemies_moving_Forward = 22;
-    }
-
-    if (enemies_moving_Backward <= 20)
-    {  
-        for (auto& e : enemies) {
-            e.move(-1);
-        }
-        /*for (auto& e : enemies) {
-            position = e.get_pos();
-            position.x -= 2;
-            e.set_pos(position);
-        }  */
-        enemies_moving_Backward++;
-    }
-    else if(enemies_moving_Backward > 20 && enemies_moving_Forward == 22 && enemies_moving_Backward!=22)
-    {
-        enemies_moving_Forward = 0;
-        enemies_moving_Backward = 22;       
-    }
-   
-     if (loop ==10 && !enemies.empty()) {
-        // Random enemy shoots
-        int idx = rand() % enemies.size();
-        position = enemies[idx].get_pos();
-        position.x = position.x + 20;
-        m.set_pos(position);
-        Missile.push_back(m);
-        loop = 0;   
-    }
-     for (auto& m : Missile) {
-         position = m.get_pos();
-         position.y += 5;
-         m.set_pos(position);
-     }
-     loop++;
-   
+  
     for (int m_count = 0; m_count < Missile.size(); m_count++)
         Missile[m_count].draw(_Canvas);
 
     for (int e_count = 0; e_count < enemies.size(); e_count++)
         enemies[e_count].draw(_Canvas);
-    CShip s;
-    cv::Point S_pos = cv::Point(_point_horizontal_mid - ship_size, _Canvas.size().height - 5);
-        s.set_pos(S_pos);
-        s.draw(_Canvas);
-    
+
+    if (abs(raw - center) > deadZone)
+        ship_horizontal = (raw - center) * 0.002f;
+    //cv::Point S_pos = cv::Point(ship_horizontal, _Canvas.size().height - 15);
+    cv::Point S_pos = cv::Point(_point_horizontal_mid - ship_size, _Canvas.size().height - 15);
+        S.set_pos(S_pos);
+        S.draw(_Canvas);
+    if (_button) {
+        position.x = S_pos.x + ship_size;
+        position.y = S_pos.y;
+         SM.set_pos(position);
+         ShipMissile.push_back(SM);
+         std::cout << "Ship Shooting \n";
+         _button = false;
+    }
+    for (int sm_count = 0; sm_count < ShipMissile.size(); sm_count++)
+    {
+        vel.x = 0;
+        vel.y = -5;
+        ShipMissile[sm_count].move(vel);
+        ShipMissile[sm_count].draw(_Canvas);
+    }
+    if (_reset) {
+        _Canvas.setTo(cv::Scalar(0, 0, 0));
+        init();
+        S.set_lives(3);
+        score = 0;
+        _reset = false;
+    }
+    if (S.get_lives()<=0)
+    {
+        Space_Reset_position = cv::Point(480, 380);
+        cv::putText(_Canvas, "your Score:", cv::Point(350, 320), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
+        cv::putText(_Canvas, scoreText, cv::Point(600, 320), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 0), 2);
+        cv::putText(_Canvas, "GAME OVER", cv::Point(400, 280), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 0, 255), 2);
+        if (cvui::button(_Canvas, Space_Reset_position.x, Space_Reset_position.y, 60, 40, "Play Again")) {
+            _reset = true;
+            cvui::update();
+        }
+    }
     cv::imshow(CANVAS_NAME, _Canvas);
     _Canvas.setTo(cv::Scalar(0, 0, 0));
     cv::waitKey(1);
@@ -172,6 +193,10 @@ void CSpaceInvaderGame::draw() {
 /////   GPIO Function
 ////////////////////////////////////////////
 void CSpaceInvaderGame::GPIO() {
+    
+    control.get_data(analog, Horizontal_dir_channel, Horizontal_val);
+    //raw = static_cast<int>(control.get_analog(Horizontal_val));
+    _ship_position_percentage = static_cast<int>(control.get_analog(Horizontal_val));
     //auto end_time = std::chrono::system_clock::now() + std::chrono::milliseconds(1000 / Space_FPS_SP);
     control.get_data(R_Digital, R_channel, R_val);
 
@@ -179,17 +204,10 @@ void CSpaceInvaderGame::GPIO() {
         _reset = true;
     }
     control.get_data(Shoot_Digital, Digital_channel, digi_val);
-    
-        if (control.get_button(digi_val)) {
-            fire = true;
-        }
-        else
-        {
-            fire = false;
-        }
+    if (control.get_button(digi_val)) {
+        _button = true;
+    }
 
-    control.get_data(analog, Horizontal_dir_channel, Horizontal_val);
-    _ship_position_percentage = static_cast<int>(control.get_analog(Horizontal_val));
     // Sleep if time remaining
     //std::this_thread::sleep_until(end_time);
 }
@@ -198,8 +216,62 @@ void CSpaceInvaderGame::GPIO() {
 ////////////////////////////////////////////
 void CSpaceInvaderGame::update() 
 {
+    for (int in_Index = 0; in_Index < enemies.size(); in_Index++) {
+        position = enemies[in_Index].get_pos();
+        if ((position.x - pos_temp.x) > 0) {
+            if ((position.x + 40) >= _Canvas.cols) {
+                moving = 1;             //moving down
+                break;
+            }
+            else
+            {
+                moving = 0;             //moving forward
+            }
+        }
+        else
+        {
+            if (position.x <= 0) {
+                moving = 1;             //moving down
+                break;
+            }
+            else
+            {
+                moving = 2;             //moving backward
+            }
+        }
+    }
+    if (moving == 0)
+    {
+        vel.x = 1;
+        vel.y = 0;
+        for (auto& e : enemies) {
+            e.move(vel);
+        }
+    }
+    if (moving == 2)
+    {
+        vel.x = -1;
+        vel.y = 0;
+        for (auto& e : enemies) {
+            e.move(vel);
+        }
+    }
+    if (moving == 1)
+    {
+        vel.x = 0;
+        vel.y = 5;
+        for (auto& e : enemies) {
+            e.move(vel);
+        }
+        if (moving_temp == 0)
+            position.x = _Canvas.size().width + 5;
+        else if (moving_temp == 2)
+            position.x = -5;
+    }
+    pos_temp = position;
+    moving_temp = moving;
     _point_horizontal_mid = (((_Canvas.size().width) * _ship_position_percentage) / 80);
-    std::cout << " position " << _point_horizontal_mid << "\n";
+    //std::cout << " position " << _point_horizontal_mid << "\n";
     // _x_cursor inside canvas
     if (_point_horizontal_mid - ship_size < 0) {
         _point_horizontal_mid  = 2*ship_size;
@@ -207,12 +279,94 @@ void CSpaceInvaderGame::update()
     if (_point_horizontal_mid + ship_size > _Canvas.size().width) {
         _point_horizontal_mid = _Canvas.cols - ship_size;
     }
+    if (loop == 7 && !enemies.empty()) {
+        // Random enemy shoots
+        int idx = rand() % enemies.size();
+        position = enemies[idx].get_pos();
+        position.x = position.x + 20;
+        m.set_pos(position);
+        Missile.push_back(m);
+        loop = 0;
+    }
+    for (auto& m : Missile) {
+        position = m.get_pos();
+        position.y += 5;
+        m.set_pos(position);
+    }
+    loop++;
     // Remove missiles that leave the screen
-    Missile.erase(
+    Missile.erase
+    (
         std::remove_if(Missile.begin(), Missile.end(),
             [&](CMissile& m)
-            { position = m.get_pos();
-    return position.y > _Canvas.rows; }),
+            { 
+                position = m.get_pos();
+                return position.y > _Canvas.rows; 
+            }),
         Missile.end()
     );
+    ShipMissile.erase
+    (
+        std::remove_if(ShipMissile.begin(), ShipMissile.end(),
+            [&](CShipMissile& sm)
+            {
+                position = sm.get_pos();
+                return position.y < 0;
+            }),
+        ShipMissile.end()
+    );
+    if (S.get_lives() > 0) 
+    {
+        for (auto& m : Missile)
+        {
+            if (m.collide(S))
+            {
+                S.hit();
+                m.hit();
+                
+            }
+        }
+    }
+    
+    Missile.erase
+    (
+        std::remove_if(Missile.begin(), Missile.end(),
+            [&](CMissile& m)
+            {
+
+                return m.get_lives() <= 0;
+            }),
+        Missile.end()
+    );
+    for (auto& sm : ShipMissile)
+    {
+        for (auto& e : enemies)
+        {
+            if (sm.collide(e))
+            {
+                e.hit();
+                sm.hit();
+                score += 10;
+            }
+        }
+    }
+    
+    enemies.erase(
+        std::remove_if(enemies.begin(), enemies.end(),
+            [](CInvader& e)
+            {
+                return e.get_lives() <= 0;
+            }),
+        enemies.end()
+    );
+    ShipMissile.erase(
+        std::remove_if(ShipMissile.begin(), ShipMissile.end(),
+            [](CShipMissile& sm)
+            {
+                return sm.get_lives() <= 0;
+            }),
+        ShipMissile.end()
+    );
+ 
+        
 }

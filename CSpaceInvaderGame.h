@@ -3,17 +3,9 @@
 #include "CGameObject.h"
 #include "CMissile.h"
 #include "CInvader.h"
+#include "CShipMissile.h"
 
-/*struct Enemies {
-	cv::Point position;
-	int speed;
-	bool alive;
-};*/
-/*struct missile {
-	cv::Point position;
-	int speed =5;
-	bool alive ;
-};*/
+
 /** @brief This class is a child of CBase4618 class. The class will support to sketch and draw on Canva
 *
 *
@@ -25,15 +17,17 @@ private:
 	int _point_horizontal_mid;			///< position of ship 
 	int _ship_position_percentage;		///< joystick x direction in percentage
 	int _pointHorizontal_mid_position;	///< mid point of ship
+	//int _ShipMissile =0;				///< Ship missile counting
 	bool _running = true;				///< while loop variable	
 	double _FPS;						///< measuring game speed
+	bool _button = false;				///< shooting missile button
 	bool _reset = false;				///< clear the game and reset game back to zero
 	bool _thread_exit = false;			///< stop all thread when it is true
-	cv::Rect _player_Ship;				///< object as play firing ship
-	cv::Rect _gun;						///< ship gun 
+	//cv::Rect _player_Ship;				///< object as play firing ship
 	cv::Rect _enemies;					///< enermy ships
 	std::vector<CInvader>  enemies;		///< vector enermies spawn
 	std::vector<CMissile> Missile;		///< vector missle
+	std::vector<CShipMissile> ShipMissile; ///< vector for ship missile
 	/** @brief This function is to calculate position and range of joytick.
 	*
 	* @return nothing
@@ -52,25 +46,15 @@ private:
 	*
 	*/
 	void GPIO();
-	/** @brief This function is to run update function seperately
-	*
-	* @return nothing
-	*
-	*/
-	//static void update_thread(CSpaceInvaderGame* ptr);
-	/** @brief This function is to run draw function seperately
-	*
-	* @return nothing
-	*
-	*/
-	//static void draw_thread(CSpaceInvaderGame* ptr);
-	/** @brief This function is to run GPIO function seperately
-	*
-	* @return nothing
-	*
-	*/
-	//static void GPIO_thread(CSpaceInvaderGame* ptr);
+	
 public:
+	/** @brief This function is initialize Invaders
+	*
+	* @return nothing
+	*
+	*/
+	void init()
+		;
 	CSpaceInvaderGame();
 	/** @brief This function is to initialize the canvas and open comport
 	*

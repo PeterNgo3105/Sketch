@@ -95,6 +95,7 @@
     <ClInclude Include="CInvader.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CShip.h" />
+    <ClInclude Include="CShipMissile.h" />
     <ClInclude Include="CSketch.h" />
     <ClInclude Include="CSpaceInvaderGame.h" />
     <ClInclude Include="cvui.h" />
@@ -109,6 +110,7 @@
     <ClCompile Include="CInvader.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CShip.cpp" />
+    <ClCompile Include="CShipMissile.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Pong.cpp" />
     <ClCompile Include="Serial.cpp" />
