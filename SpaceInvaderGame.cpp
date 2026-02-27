@@ -35,6 +35,7 @@ int moving;
 int moving_temp = 0;
 int score = 0;
 int raw;
+int Button_count = 0;
 const int center = 2048;
 const int deadZone = 100;
 float ship_horizontal = 0;
@@ -115,7 +116,7 @@ void CSpaceInvaderGame::draw() {
         cv::putText(_Canvas, std::to_string(S.get_lives()), cv::Point(800, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 255), 2);
         cv::putText(_Canvas, "Missile", cv::Point(350, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
         //cv::putText(_Canvas, std::to_string(Missile.size()), cv::Point(400, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 255), 2);
-        cv::putText(_Canvas, std::to_string(ShipMissile.size()), cv::Point(450, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 255), 2);
+        cv::putText(_Canvas, std::to_string(ShipMissile.size()), cv::Point(480, 30), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 255), 2);
         if (cvui::button(_Canvas, Space_Reset_position.x, Space_Reset_position.y, 60, 40, "reset")) {
             _reset = true;
             cvui::update();
@@ -157,7 +158,7 @@ void CSpaceInvaderGame::draw() {
         position.y = S_pos.y;
          SM.set_pos(position);
          ShipMissile.push_back(SM);
-         std::cout << "Ship Shooting \n";
+         //std::cout << "Ship Shooting \n";
          _button = false;
     }
     for (int sm_count = 0; sm_count < ShipMissile.size(); sm_count++)
@@ -185,6 +186,17 @@ void CSpaceInvaderGame::draw() {
             cvui::update();
         }
     }
+    if (enemies.size() == 0)
+    {
+        Space_Reset_position = cv::Point(480, 380);
+        cv::putText(_Canvas, "your Score:", cv::Point(350, 320), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2);
+        cv::putText(_Canvas, scoreText, cv::Point(600, 320), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 0), 2);
+        cv::putText(_Canvas, "YOU WIN", cv::Point(400, 280), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 0, 255), 2);
+        if (cvui::button(_Canvas, Space_Reset_position.x, Space_Reset_position.y, 60, 40, "Play Again")) {
+            _reset = true;
+            cvui::update();
+        }
+    }
     cv::imshow(CANVAS_NAME, _Canvas);
     _Canvas.setTo(cv::Scalar(0, 0, 0));
     cv::waitKey(1);
@@ -206,6 +218,9 @@ void CSpaceInvaderGame::GPIO() {
     control.get_data(Shoot_Digital, Digital_channel, digi_val);
     if (control.get_button(digi_val)) {
         _button = true;
+        Button_count++;
+        std::cout << "Missiles launded: " << Button_count << "\n";
+
     }
 
     // Sleep if time remaining
@@ -219,7 +234,7 @@ void CSpaceInvaderGame::update()
     for (int in_Index = 0; in_Index < enemies.size(); in_Index++) {
         position = enemies[in_Index].get_pos();
         if ((position.x - pos_temp.x) > 0) {
-            if ((position.x + 40) >= _Canvas.cols) {
+            if ((position.x + 60) >= _Canvas.cols) {
                 moving = 1;             //moving down
                 break;
             }
@@ -305,6 +320,7 @@ void CSpaceInvaderGame::update()
             }),
         Missile.end()
     );
+    // Remove player missiles that leace screen
     ShipMissile.erase
     (
         std::remove_if(ShipMissile.begin(), ShipMissile.end(),
@@ -315,6 +331,7 @@ void CSpaceInvaderGame::update()
             }),
         ShipMissile.end()
     );
+    // checking collision between Invader missiles and player ship
     if (S.get_lives() > 0) 
     {
         for (auto& m : Missile)
@@ -327,7 +344,7 @@ void CSpaceInvaderGame::update()
             }
         }
     }
-    
+    // Remove Invader Missiles if it hit player ship
     Missile.erase
     (
         std::remove_if(Missile.begin(), Missile.end(),
@@ -338,6 +355,7 @@ void CSpaceInvaderGame::update()
             }),
         Missile.end()
     );
+    // Checking collision between Ship missiles and Invader
     for (auto& sm : ShipMissile)
     {
         for (auto& e : enemies)
@@ -350,7 +368,7 @@ void CSpaceInvaderGame::update()
             }
         }
     }
-    
+    // Remove Invader 
     enemies.erase(
         std::remove_if(enemies.begin(), enemies.end(),
             [](CInvader& e)
@@ -359,6 +377,7 @@ void CSpaceInvaderGame::update()
             }),
         enemies.end()
     );
+    // Remove PLayer ship missiles
     ShipMissile.erase(
         std::remove_if(ShipMissile.begin(), ShipMissile.end(),
             [](CShipMissile& sm)
@@ -367,6 +386,26 @@ void CSpaceInvaderGame::update()
             }),
         ShipMissile.end()
     );
+    for (auto& e : enemies)
+    {
+        if (e.collide(S))
+        {
+            S.hit();
+            e.hit();
+
+        }
+    }
+    // Remove Invader 
+    enemies.erase(
+        std::remove_if(enemies.begin(), enemies.end(),
+            [](CInvader& e)
+            {
+                return e.get_lives() <= 0;
+            }),
+        enemies.end()
+    );
+
+
  
         
 }
