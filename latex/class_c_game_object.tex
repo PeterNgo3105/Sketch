@@ -1,0 +1,198 @@
+\doxysection{CGame\+Object Class Reference}
+\hypertarget{class_c_game_object}{}\label{class_c_game_object}\index{CGameObject@{CGameObject}}
+
+
+This class is holding objects for \doxylink{class_c_ship}{CShip}, Invader and Missiles.  
+
+
+
+
+{\ttfamily \+\#include $<$CGame\+Object.\+h$>$}
+
+Inheritance diagram for CGame\+Object:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_game_object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_c_game_object_ab33d75ab8f9f435addbe3e574ff6e585}{move}} (cv::\+\+Point2f \doxymbox{\hyperlink{class_c_game_object_afc80c955ac58f71f2fce1b341bd88e7f}{\+\_\+velocity}})
+\begin{DoxyCompactList}\small\item\em this function is to move objects in game \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_game_object_a095ec5e8e92a7442f444a1d3b7e200da}{collide}} (\doxymbox{\hyperlink{class_c_game_object}{CGame\+Object}} \&obj)
+\begin{DoxyCompactList}\small\item\em this function is to check if there is any collision between objects \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_game_object_ab66892d3d3db14c4b7e427f341c949dd}{hit}} ()
+\begin{DoxyCompactList}\small\item\em this function is to remove object lives \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_c_game_object_a9c794264bb1c37231f137b0df3a8ccbc}{get\+\_\+lives}} ()
+\begin{DoxyCompactList}\small\item\em this function is to get object lives \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_game_object_a1fbab5676bc0491dd10266bce54ad577}{set\+\_\+lives}} (int lives)
+\begin{DoxyCompactList}\small\item\em this function is to set lives to objects \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_game_object_a00d81865208e461b027e02c681f1b5c5}{set\+\_\+pos}} (cv::\+\+Point2f pos)
+\begin{DoxyCompactList}\small\item\em this function is to set posistion to objects \end{DoxyCompactList}\item 
+cv::\+\+Point2f \doxymbox{\hyperlink{class_c_game_object_adba771699db5820fcbc948ec80b7003b}{get\+\_\+pos}} ()
+\begin{DoxyCompactList}\small\item\em this function is to check where objects are \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_game_object_a52acc619db9e652d6e0d0b6fd3205a0a}{draw}} (cv::\+\+Mat \&im)
+\begin{DoxyCompactList}\small\item\em this function is to draw object in Canvas \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_game_object_a7b4e09f1daa6a49233a0f5c02c65de2c}\label{class_c_game_object_a7b4e09f1daa6a49233a0f5c02c65de2c} 
+cv::\+\+Point2f {\bfseries \+\_\+position}
+\begin{DoxyCompactList}\small\item\em position of the objects \end{DoxyCompactList}\item 
+\Hypertarget{class_c_game_object_afc80c955ac58f71f2fce1b341bd88e7f}\label{class_c_game_object_afc80c955ac58f71f2fce1b341bd88e7f} 
+cv::\+\+Point2f {\bfseries \+\_\+velocity}
+\begin{DoxyCompactList}\small\item\em speed of objects \end{DoxyCompactList}\item 
+\Hypertarget{class_c_game_object_aed031adce40c8c5b868a0c1c05a770ec}\label{class_c_game_object_aed031adce40c8c5b868a0c1c05a770ec} 
+cv::\+\+Rect {\bfseries \+\_\+shape}
+\begin{DoxyCompactList}\small\item\em shape of objects \end{DoxyCompactList}\item 
+\Hypertarget{class_c_game_object_acb7176fe06c83819114f7e8a8490c755}\label{class_c_game_object_acb7176fe06c83819114f7e8a8490c755} 
+int {\bfseries \+\_\+lives}
+\begin{DoxyCompactList}\small\item\em live of objects \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is holding objects for \doxylink{class_c_ship}{CShip}, Invader and Missiles. 
+
+holing functions variables for objects that can access from the game
+
+@\+Author Peter Ngo 
+
+\label{doc-func-members}
+\Hypertarget{class_c_game_object_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_game_object_a095ec5e8e92a7442f444a1d3b7e200da}\index{CGameObject@{CGameObject}!collide@{collide}}
+\index{collide@{collide}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{collide()}{collide()}}
+{\footnotesize\ttfamily \label{class_c_game_object_a095ec5e8e92a7442f444a1d3b7e200da} 
+bool CGame\+Object::\+collide (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_c_game_object}{CGame\+Object}} \&}]{obj}{}\end{DoxyParamCaption})}
+
+
+
+this function is to check if there is any collision between objects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & is the object that another object checking with\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true or false 
+\end{DoxyReturn}
+\Hypertarget{class_c_game_object_a52acc619db9e652d6e0d0b6fd3205a0a}\index{CGameObject@{CGameObject}!draw@{draw}}
+\index{draw@{draw}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_c_game_object_a52acc619db9e652d6e0d0b6fd3205a0a} 
+void CGame\+Object::\+draw (\begin{DoxyParamCaption}\item[{cv::\+\+Mat \&}]{im}{}\end{DoxyParamCaption})}
+
+
+
+this function is to draw object in Canvas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em im} & is Canvas to draw in\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_game_object_a9c794264bb1c37231f137b0df3a8ccbc}\index{CGameObject@{CGameObject}!get\_lives@{get\_lives}}
+\index{get\_lives@{get\_lives}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{get\_lives()}{get\_lives()}}
+{\footnotesize\ttfamily \label{class_c_game_object_a9c794264bb1c37231f137b0df3a8ccbc} 
+int CGame\+Object::\+get\+\_\+lives (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+this function is to get object lives 
+
+\begin{DoxyReturn}{Returns}
+lives 
+\end{DoxyReturn}
+\Hypertarget{class_c_game_object_adba771699db5820fcbc948ec80b7003b}\index{CGameObject@{CGameObject}!get\_pos@{get\_pos}}
+\index{get\_pos@{get\_pos}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{get\_pos()}{get\_pos()}}
+{\footnotesize\ttfamily \label{class_c_game_object_adba771699db5820fcbc948ec80b7003b} 
+cv::\+\+Point2f CGame\+Object::\+get\+\_\+pos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+this function is to check where objects are 
+
+\begin{DoxyReturn}{Returns}
+position 
+\end{DoxyReturn}
+\Hypertarget{class_c_game_object_ab66892d3d3db14c4b7e427f341c949dd}\index{CGameObject@{CGameObject}!hit@{hit}}
+\index{hit@{hit}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{hit()}{hit()}}
+{\footnotesize\ttfamily \label{class_c_game_object_ab66892d3d3db14c4b7e427f341c949dd} 
+void CGame\+Object::\+hit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+this function is to remove object lives 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_game_object_ab33d75ab8f9f435addbe3e574ff6e585}\index{CGameObject@{CGameObject}!move@{move}}
+\index{move@{move}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \label{class_c_game_object_ab33d75ab8f9f435addbe3e574ff6e585} 
+void CGame\+Object::\+move (\begin{DoxyParamCaption}\item[{cv::\+\+Point2f}]{\+\_\+velocity}{}\end{DoxyParamCaption})}
+
+
+
+this function is to move objects in game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+velocisty} & is speed of object can move\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_game_object_a1fbab5676bc0491dd10266bce54ad577}\index{CGameObject@{CGameObject}!set\_lives@{set\_lives}}
+\index{set\_lives@{set\_lives}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{set\_lives()}{set\_lives()}}
+{\footnotesize\ttfamily \label{class_c_game_object_a1fbab5676bc0491dd10266bce54ad577} 
+void CGame\+Object::\+set\+\_\+lives (\begin{DoxyParamCaption}\item[{int}]{lives}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+this function is to set lives to objects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em live} & is number of live that set to objects\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+\_\+live to objects 
+\end{DoxyReturn}
+\Hypertarget{class_c_game_object_a00d81865208e461b027e02c681f1b5c5}\index{CGameObject@{CGameObject}!set\_pos@{set\_pos}}
+\index{set\_pos@{set\_pos}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{set\_pos()}{set\_pos()}}
+{\footnotesize\ttfamily \label{class_c_game_object_a00d81865208e461b027e02c681f1b5c5} 
+void CGame\+Object::\+set\+\_\+pos (\begin{DoxyParamCaption}\item[{cv::\+\+Point2f}]{pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+this function is to set posistion to objects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & is position of object\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+\_\+position of object 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+CGame\+Object.\+h\item 
+Game\+Object.\+cpp\end{DoxyCompactItemize}

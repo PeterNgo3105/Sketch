@@ -1,0 +1,27 @@
+\doxysection{CGame\+Object.\+h}
+\hypertarget{_c_game_object_8h_source}{}\label{_c_game_object_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_c_game_object}{CGameObject}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ cv::Point2f\ \doxymbox{\hyperlink{class_c_game_object_a7b4e09f1daa6a49233a0f5c02c65de2c}{\_position}};\ \ }
+\DoxyCodeLine{00015\ \ \ \ \ cv::Point2f\ \doxymbox{\hyperlink{class_c_game_object_afc80c955ac58f71f2fce1b341bd88e7f}{\_velocity}};\ \ }
+\DoxyCodeLine{00016\ \ \ \ \ cv::Rect\ \doxymbox{\hyperlink{class_c_game_object_aed031adce40c8c5b868a0c1c05a770ec}{\_shape}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_game_object_acb7176fe06c83819114f7e8a8490c755}{\_lives}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_game_object_ab33d75ab8f9f435addbe3e574ff6e585}{move}}(cv::\ Point2f\ \doxymbox{\hyperlink{class_c_game_object_afc80c955ac58f71f2fce1b341bd88e7f}{\_velocity}});}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_game_object_a095ec5e8e92a7442f444a1d3b7e200da}{collide}}(\doxymbox{\hyperlink{class_c_game_object}{CGameObject}}\&\ obj);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_game_object_ab66892d3d3db14c4b7e427f341c949dd}{hit}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_game_object_a9c794264bb1c37231f137b0df3a8ccbc}{get\_lives}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_c_game_object_acb7176fe06c83819114f7e8a8490c755}{\_lives}};\ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_game_object_a1fbab5676bc0491dd10266bce54ad577}{set\_lives}}(\textcolor{keywordtype}{int}\ lives)\ \{\ \doxymbox{\hyperlink{class_c_game_object_acb7176fe06c83819114f7e8a8490c755}{\_lives}}\ =\ lives;\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_game_object_a00d81865208e461b027e02c681f1b5c5}{set\_pos}}(cv::Point2f\ pos)\ \{\ \doxymbox{\hyperlink{class_c_game_object_a7b4e09f1daa6a49233a0f5c02c65de2c}{\_position}}\ =\ pos;\ \}}
+\DoxyCodeLine{00081\ \ \ \ \ cv::Point2f\ \doxymbox{\hyperlink{class_c_game_object_adba771699db5820fcbc948ec80b7003b}{get\_pos}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_c_game_object_a7b4e09f1daa6a49233a0f5c02c65de2c}{\_position}};\ \}}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//cv::Rect\ get\_shape()\ const\ \{\ return\ \_shape;\ \}}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_game_object_a52acc619db9e652d6e0d0b6fd3205a0a}{draw}}(cv::Mat\&\ im);}
+\DoxyCodeLine{00093\ \};}
+
+\end{DoxyCode}

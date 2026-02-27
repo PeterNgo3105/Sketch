@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['read_0',['read',['../class_serial.html#a8266889eb5bfa7ef8b53595c5482133d',1,'Serial']]],
-  ['run_1',['run',['../class_c_sketch.html#af7302c8310d8f744d2978ced73d09c2f',1,'CSketch::run()'],['../class_c_pong.html#a8d1f1736decaa60a8b8e5b45798f9d72',1,'CPong::run()']]]
+  ['init_0',['init',['../class_c_space_invader_game.html#a47e3bd152ad9a57ef2bfd9fdd02e8d75',1,'CSpaceInvaderGame']]],
+  ['init_5fcom_1',['init_com',['../class_c_control.html#a3d1384d0e1ee2a4a478a798b46457468',1,'CControl']]]
 ];

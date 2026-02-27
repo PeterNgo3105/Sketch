@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init_5fcom_0',['init_com',['../class_c_control.html#a3d1384d0e1ee2a4a478a798b46457468',1,'CControl']]]
+  ['hit_0',['hit',['../class_c_game_object.html#ab66892d3d3db14c4b7e427f341c949dd',1,'CGameObject']]]
 ];

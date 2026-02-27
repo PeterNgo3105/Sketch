@@ -1,0 +1,65 @@
+\doxysection{CMissile Class Reference}
+\hypertarget{class_c_missile}{}\label{class_c_missile}\index{CMissile@{CMissile}}
+
+
+The missiles inherits from the \doxylink{class_c_game_object}{CGame\+Object} and has only constructor. The constructor can be used to initialize the size, and shape.  
+
+
+
+
+{\ttfamily \+\#include $<$CMissile.\+h$>$}
+
+Inheritance diagram for CMissile:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_missile}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_missile_a956f0b3cf58db39c91048b77410b66ef}\label{class_c_missile_a956f0b3cf58db39c91048b77410b66ef} 
+{\bfseries CMissile} ()
+\begin{DoxyCompactList}\small\item\em the constructor can be used to initialize the size, and shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_c_game_object}{CGame\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_c_game_object_ab33d75ab8f9f435addbe3e574ff6e585}{move}} (cv::\+\+Point2f \doxymbox{\hyperlink{class_c_game_object_afc80c955ac58f71f2fce1b341bd88e7f}{\+\_\+velocity}})
+\begin{DoxyCompactList}\small\item\em this function is to move objects in game \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_game_object_a095ec5e8e92a7442f444a1d3b7e200da}{collide}} (\doxymbox{\hyperlink{class_c_game_object}{CGame\+Object}} \&obj)
+\begin{DoxyCompactList}\small\item\em this function is to check if there is any collision between objects \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_game_object_ab66892d3d3db14c4b7e427f341c949dd}{hit}} ()
+\begin{DoxyCompactList}\small\item\em this function is to remove object lives \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_c_game_object_a9c794264bb1c37231f137b0df3a8ccbc}{get\+\_\+lives}} ()
+\begin{DoxyCompactList}\small\item\em this function is to get object lives \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_game_object_a1fbab5676bc0491dd10266bce54ad577}{set\+\_\+lives}} (int lives)
+\begin{DoxyCompactList}\small\item\em this function is to set lives to objects \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_game_object_a00d81865208e461b027e02c681f1b5c5}{set\+\_\+pos}} (cv::\+\+Point2f pos)
+\begin{DoxyCompactList}\small\item\em this function is to set posistion to objects \end{DoxyCompactList}\item 
+cv::\+\+Point2f \doxymbox{\hyperlink{class_c_game_object_adba771699db5820fcbc948ec80b7003b}{get\+\_\+pos}} ()
+\begin{DoxyCompactList}\small\item\em this function is to check where objects are \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_game_object_a52acc619db9e652d6e0d0b6fd3205a0a}{draw}} (cv::\+\+Mat \&im)
+\begin{DoxyCompactList}\small\item\em this function is to draw object in Canvas \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_c_game_object}{CGame\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+cv::\+\+Point2f {\bfseries \+\_\+position}
+\begin{DoxyCompactList}\small\item\em position of the objects \end{DoxyCompactList}\item 
+cv::\+\+Point2f {\bfseries \+\_\+velocity}
+\begin{DoxyCompactList}\small\item\em speed of objects \end{DoxyCompactList}\item 
+cv::\+\+Rect {\bfseries \+\_\+shape}
+\begin{DoxyCompactList}\small\item\em shape of objects \end{DoxyCompactList}\item 
+int {\bfseries \+\_\+lives}
+\begin{DoxyCompactList}\small\item\em live of objects \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The missiles inherits from the \doxylink{class_c_game_object}{CGame\+Object} and has only constructor. The constructor can be used to initialize the size, and shape. 
+
+@auther Peter Ngo 
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+CMissile.\+h\item 
+CMissile.\+cpp\end{DoxyCompactItemize}

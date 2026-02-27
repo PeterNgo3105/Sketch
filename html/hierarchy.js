@@ -2,10 +2,17 @@ var hierarchy =
 [
     [ "CBase4618", "class_c_base4618.html", [
       [ "CPong", "class_c_pong.html", null ],
-      [ "CSketch", "class_c_sketch.html", null ]
+      [ "CSketch", "class_c_sketch.html", null ],
+      [ "CSpaceInvaderGame", "class_c_space_invader_game.html", null ]
     ] ],
     [ "CClient", "class_c_client.html", null ],
     [ "CControl", "class_c_control.html", null ],
+    [ "CGameObject", "class_c_game_object.html", [
+      [ "CInvader", "class_c_invader.html", null ],
+      [ "CMissile", "class_c_missile.html", null ],
+      [ "CShip", "class_c_ship.html", null ],
+      [ "CShipMissile", "class_c_ship_missile.html", null ]
+    ] ],
     [ "CServer", "class_c_server.html", null ],
     [ "cvui::cvui_block_t", "structcvui_1_1cvui__block__t.html", null ],
     [ "cvui::cvui_context_t", "structcvui_1_1cvui__context__t.html", null ],

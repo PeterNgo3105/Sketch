@@ -6,7 +6,8 @@
 #include "CShipMissile.h"
 
 
-/** @brief This class is a child of CBase4618 class. The class will support to sketch and draw on Canva
+/** 
+* @brief This class is a child of CBase4618 class. The class will support to sketch and draw on Canva
 *
 *
 * @Author Peter Ngo
@@ -15,19 +16,18 @@ class CSpaceInvaderGame : CBase4618 {
 private:
 	CControl control;					///< this variable to get access to CControl class
 	int _point_horizontal_mid;			///< position of ship 
-	int _ship_position_percentage;		///< joystick x direction in percentage
+	float _ship_position_percentage;		///< joystick x direction in percentage
 	int _pointHorizontal_mid_position;	///< mid point of ship
-	//int _ShipMissile =0;				///< Ship missile counting
 	bool _running = true;				///< while loop variable	
 	double _FPS;						///< measuring game speed
 	bool _button = false;				///< shooting missile button
 	bool _reset = false;				///< clear the game and reset game back to zero
 	bool _thread_exit = false;			///< stop all thread when it is true
-	//cv::Rect _player_Ship;				///< object as play firing ship
 	cv::Rect _enemies;					///< enermy ships
 	std::vector<CInvader>  enemies;		///< vector enermies spawn
 	std::vector<CMissile> Missile;		///< vector missle
 	std::vector<CShipMissile> ShipMissile; ///< vector for ship missile
+	
 	/** @brief This function is to calculate position and range of joytick.
 	*
 	* @return nothing

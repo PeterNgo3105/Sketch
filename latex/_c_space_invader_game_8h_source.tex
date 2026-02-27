@@ -1,0 +1,40 @@
+\doxysection{CSpace\+Invader\+Game.\+h}
+\hypertarget{_c_space_invader_game_8h_source}{}\label{_c_space_invader_game_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}CBase4618.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CGameObject.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}CMissile.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CInvader.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}CShipMissile.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }CSpaceInvaderGame\ :\ \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \doxymbox{\hyperlink{class_c_control}{CControl}}\ \doxymbox{\hyperlink{class_c_space_invader_game_a6c3d283efdcbd57509713928ab2813f3}{control}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_space_invader_game_a30c48588785dc23b021723d236119d80}{\_point\_horizontal\_mid}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_space_invader_game_a854235b8ffa0d7132c622cca6a50ed53}{\_ship\_position\_percentage}};\ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_c_space_invader_game_af1a57bff6295d16f99fc7d362846124a}{\_pointHorizontal\_mid\_position}};\ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_space_invader_game_a7470529c1f40963e69cb390157763157}{\_running}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{class_c_space_invader_game_a718038e405f437ec3aacfae191f450e0}{\_FPS}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_space_invader_game_ac72e0420680f826d5e68cbedb36a1de9}{\_button}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_space_invader_game_aa22eb0e5af9d9e81b79293b333740a19}{\_reset}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_space_invader_game_a4e274b61dc9eed7cbe30bc092a451ecb}{\_thread\_exit}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ cv::Rect\ \doxymbox{\hyperlink{class_c_space_invader_game_a946994fd7d8b4a0d8466c58fc9eef0d2}{\_enemies}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ std::vector<CInvader>\ \ \doxymbox{\hyperlink{class_c_space_invader_game_afcf5df5f9ba1391b12dc06faec647ad0}{enemies}};\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ std::vector<CMissile>\ \doxymbox{\hyperlink{class_c_space_invader_game_abc143a16a31bfea3f892749182e62094}{Missile}};\ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ std::vector<CShipMissile>\ \doxymbox{\hyperlink{class_c_space_invader_game_a3076d15e2c9bf2bd9d9e6d23d5bf0aa4}{ShipMissile}};\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_space_invader_game_a2d1802b0b2f47495a172bcd83cd3a7f9}{update}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_space_invader_game_a665f32d657cea6c02e940fd531bfad5d}{draw}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_space_invader_game_a7829b6ab6ae012aff85fac41785dd38d}{GPIO}}();}
+\DoxyCodeLine{00048\ \ \ \ \ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_space_invader_game_a47e3bd152ad9a57ef2bfd9fdd02e8d75}{init}}()}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00057\ \ \ \ \ CSpaceInvaderGame();}
+\DoxyCodeLine{00066\ \ \ \ \ CSpaceInvaderGame(cv::Size\ Canvas\_size,\ \textcolor{keywordtype}{int}\ comport);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_space_invader_game_acb5661b8b9cb3d070d98c40c7c2c55df}{run}}();}
+\DoxyCodeLine{00074\ \};}
+
+\end{DoxyCode}

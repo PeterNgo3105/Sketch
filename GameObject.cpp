@@ -10,6 +10,9 @@ void CGameObject::draw(cv::Mat& im) {
         _shape.height
     );
 	cv::rectangle(im, object, cv::Scalar(255, 255, 255), 4, 8, 0);
+    
+    
+   // _Invader_image.copyTo(im(_shape));
 }
 void CGameObject::move(cv:: Point2f _velocity) {
     _position.x += 2*_velocity.x;

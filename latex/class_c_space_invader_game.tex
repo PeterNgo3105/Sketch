@@ -1,0 +1,190 @@
+\doxysection{CSpace\+Invader\+Game Class Reference}
+\hypertarget{class_c_space_invader_game}{}\label{class_c_space_invader_game}\index{CSpaceInvaderGame@{CSpaceInvaderGame}}
+
+
+This class is a child of \doxylink{class_c_base4618}{CBase4618} class. The class will support to sketch and draw on Canva.  
+
+
+
+
+{\ttfamily \+\#include $<$CSpace\+Invader\+Game.\+h$>$}
+
+Inheritance diagram for CSpace\+Invader\+Game:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_space_invader_game}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_c_space_invader_game_a47e3bd152ad9a57ef2bfd9fdd02e8d75}{init}} ()
+\begin{DoxyCompactList}\small\item\em This function is initialize Invaders. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_c_space_invader_game_add5386b20d224bbe85358f8c98525bd5}{CSpace\+Invader\+Game}} (cv::\+\+Size Canvas\+\_\+size, int comport)
+\begin{DoxyCompactList}\small\item\em This function is to initialize the canvas and open comport. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_space_invader_game_acb5661b8b9cb3d070d98c40c7c2c55df}{run}} ()
+\begin{DoxyCompactList}\small\item\em This function is to run game Pong. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_c_space_invader_game_a2d1802b0b2f47495a172bcd83cd3a7f9}{update}} ()
+\begin{DoxyCompactList}\small\item\em This function is to calculate position and range of joytick. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_c_space_invader_game_a665f32d657cea6c02e940fd531bfad5d}{draw}} ()
+\begin{DoxyCompactList}\small\item\em This function is to create invaders and missel and game information. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_space_invader_game_a7829b6ab6ae012aff85fac41785dd38d}{GPIO}} ()
+\begin{DoxyCompactList}\small\item\em This function is to send data and get data to and from micro controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_space_invader_game_a6c3d283efdcbd57509713928ab2813f3}\label{class_c_space_invader_game_a6c3d283efdcbd57509713928ab2813f3} 
+\doxymbox{\hyperlink{class_c_control}{CControl}} {\bfseries control}
+\begin{DoxyCompactList}\small\item\em this variable to get access to \doxylink{class_c_control}{CControl} class \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_a30c48588785dc23b021723d236119d80}\label{class_c_space_invader_game_a30c48588785dc23b021723d236119d80} 
+int {\bfseries \+\_\+point\+\_\+horizontal\+\_\+mid}
+\begin{DoxyCompactList}\small\item\em position of ship \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_a854235b8ffa0d7132c622cca6a50ed53}\label{class_c_space_invader_game_a854235b8ffa0d7132c622cca6a50ed53} 
+int {\bfseries \+\_\+ship\+\_\+position\+\_\+percentage}
+\begin{DoxyCompactList}\small\item\em joystick x direction in percentage \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_af1a57bff6295d16f99fc7d362846124a}\label{class_c_space_invader_game_af1a57bff6295d16f99fc7d362846124a} 
+int {\bfseries \+\_\+point\+Horizontal\+\_\+mid\+\_\+position}
+\begin{DoxyCompactList}\small\item\em mid point of ship \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_a7470529c1f40963e69cb390157763157}\label{class_c_space_invader_game_a7470529c1f40963e69cb390157763157} 
+bool {\bfseries \+\_\+running} = true
+\begin{DoxyCompactList}\small\item\em while loop variable \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_a718038e405f437ec3aacfae191f450e0}\label{class_c_space_invader_game_a718038e405f437ec3aacfae191f450e0} 
+double {\bfseries \+\_\+\+FPS}
+\begin{DoxyCompactList}\small\item\em measuring game speed \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_ac72e0420680f826d5e68cbedb36a1de9}\label{class_c_space_invader_game_ac72e0420680f826d5e68cbedb36a1de9} 
+bool {\bfseries \+\_\+button} = false
+\begin{DoxyCompactList}\small\item\em shooting missile button \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_aa22eb0e5af9d9e81b79293b333740a19}\label{class_c_space_invader_game_aa22eb0e5af9d9e81b79293b333740a19} 
+bool {\bfseries \+\_\+reset} = false
+\begin{DoxyCompactList}\small\item\em clear the game and reset game back to zero \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_a4e274b61dc9eed7cbe30bc092a451ecb}\label{class_c_space_invader_game_a4e274b61dc9eed7cbe30bc092a451ecb} 
+bool {\bfseries \+\_\+thread\+\_\+exit} = false
+\begin{DoxyCompactList}\small\item\em stop all thread when it is true \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_a946994fd7d8b4a0d8466c58fc9eef0d2}\label{class_c_space_invader_game_a946994fd7d8b4a0d8466c58fc9eef0d2} 
+cv::\+\+Rect {\bfseries \+\_\+enemies}
+\begin{DoxyCompactList}\small\item\em enermy ships \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_afcf5df5f9ba1391b12dc06faec647ad0}\label{class_c_space_invader_game_afcf5df5f9ba1391b12dc06faec647ad0} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_c_invader}{CInvader}} $>$ {\bfseries enemies}
+\begin{DoxyCompactList}\small\item\em vector enermies spawn \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_abc143a16a31bfea3f892749182e62094}\label{class_c_space_invader_game_abc143a16a31bfea3f892749182e62094} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_c_missile}{CMissile}} $>$ {\bfseries Missile}
+\begin{DoxyCompactList}\small\item\em vector missle \end{DoxyCompactList}\item 
+\Hypertarget{class_c_space_invader_game_a3076d15e2c9bf2bd9d9e6d23d5bf0aa4}\label{class_c_space_invader_game_a3076d15e2c9bf2bd9d9e6d23d5bf0aa4} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_c_ship_missile}{CShip\+Missile}} $>$ {\bfseries Ship\+Missile}
+\begin{DoxyCompactList}\small\item\em vector for ship missile \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes inherited from \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_control}{CControl}} {\bfseries \+\_\+\+Control}
+\begin{DoxyCompactList}\small\item\em this variable to set and get data to and from controller \end{DoxyCompactList}\item 
+cv::\+\+Mat {\bfseries \+\_\+\+Canvas}
+\begin{DoxyCompactList}\small\item\em this variable to set up the screen for games \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is a child of \doxylink{class_c_base4618}{CBase4618} class. The class will support to sketch and draw on Canva. 
+
+@\+Author Peter Ngo 
+
+\label{doc-constructors}
+\Hypertarget{class_c_space_invader_game_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_c_space_invader_game_add5386b20d224bbe85358f8c98525bd5}\index{CSpaceInvaderGame@{CSpaceInvaderGame}!CSpaceInvaderGame@{CSpaceInvaderGame}}
+\index{CSpaceInvaderGame@{CSpaceInvaderGame}!CSpaceInvaderGame@{CSpaceInvaderGame}}
+\doxysubsubsection{\texorpdfstring{CSpaceInvaderGame()}{CSpaceInvaderGame()}}
+{\footnotesize\ttfamily \label{class_c_space_invader_game_add5386b20d224bbe85358f8c98525bd5} 
+CSpace\+Invader\+Game::\+\+CSpace\+Invader\+Game (\begin{DoxyParamCaption}\item[{cv::\+\+Size}]{Canvas\+\_\+size}{, }\item[{int}]{comport}{}\end{DoxyParamCaption})}
+
+
+
+This function is to initialize the canvas and open comport. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Canvas\+\_\+size} & is width and height of screen \\
+\hline
+{\em comport} & is port number of micro controller\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_space_invader_game_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_space_invader_game_a665f32d657cea6c02e940fd531bfad5d}\index{CSpaceInvaderGame@{CSpaceInvaderGame}!draw@{draw}}
+\index{draw@{draw}!CSpaceInvaderGame@{CSpaceInvaderGame}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_c_space_invader_game_a665f32d657cea6c02e940fd531bfad5d} 
+void CSpace\+Invader\+Game::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+This function is to create invaders and missel and game information. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_space_invader_game_a7829b6ab6ae012aff85fac41785dd38d}\index{CSpaceInvaderGame@{CSpaceInvaderGame}!GPIO@{GPIO}}
+\index{GPIO@{GPIO}!CSpaceInvaderGame@{CSpaceInvaderGame}}
+\doxysubsubsection{\texorpdfstring{GPIO()}{GPIO()}}
+{\footnotesize\ttfamily \label{class_c_space_invader_game_a7829b6ab6ae012aff85fac41785dd38d} 
+void CSpace\+Invader\+Game::\+\+GPIO (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+This function is to send data and get data to and from micro controller. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_space_invader_game_a47e3bd152ad9a57ef2bfd9fdd02e8d75}\index{CSpaceInvaderGame@{CSpaceInvaderGame}!init@{init}}
+\index{init@{init}!CSpaceInvaderGame@{CSpaceInvaderGame}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_c_space_invader_game_a47e3bd152ad9a57ef2bfd9fdd02e8d75} 
+void CSpace\+Invader\+Game::\+init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+This function is initialize Invaders. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_space_invader_game_acb5661b8b9cb3d070d98c40c7c2c55df}\index{CSpaceInvaderGame@{CSpaceInvaderGame}!run@{run}}
+\index{run@{run}!CSpaceInvaderGame@{CSpaceInvaderGame}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_c_space_invader_game_acb5661b8b9cb3d070d98c40c7c2c55df} 
+void CSpace\+Invader\+Game::\+run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+This function is to run game Pong. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\Hypertarget{class_c_space_invader_game_a2d1802b0b2f47495a172bcd83cd3a7f9}\index{CSpaceInvaderGame@{CSpaceInvaderGame}!update@{update}}
+\index{update@{update}!CSpaceInvaderGame@{CSpaceInvaderGame}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_c_space_invader_game_a2d1802b0b2f47495a172bcd83cd3a7f9} 
+void CSpace\+Invader\+Game::\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+This function is to calculate position and range of joytick. 
+
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+CSpace\+Invader\+Game.\+h\item 
+Space\+Invader\+Game.\+cpp\end{DoxyCompactItemize}
