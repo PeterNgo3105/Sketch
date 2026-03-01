@@ -16,7 +16,7 @@ protected:
 	cv::Rect _shape;		///< shape of objects
 	int _ship_size;			///< size of the objects
 	int _lives;				///< live of objects
-	//cv::Mat _Invader_image; ///< Invader image
+	cv::Mat _Invader_image; ///< Invader image
 public:
 	/**
 	* @brief this function is to move objects in game
@@ -99,7 +99,8 @@ public:
 	* @return Invader image
 	*
 	*/
-	//cv::Mat get_image() { return _Invader_image; }
-
+	void set_image(cv:: Mat& image) { _Invader_image = image; }
+	void set_shape();
+	//_shape = cv :: Rect (_position.x, _position.y, _Invader_image.cols, _Invader_image.rows);
 
 };

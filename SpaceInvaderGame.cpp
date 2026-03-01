@@ -8,7 +8,7 @@
 
 cv::Point Space_Close_position;
 cv::Point Space_Reset_position;
-cv::Point position;
+cv::Point2f position;
 cv::Point pos_temp = cv::Point(0,0);
 cv::Point2f vel;
 CShip S;
@@ -37,31 +37,40 @@ int Button_count = 0;
 const int center = 2048;
 const int deadZone = 100;
 float ship_horizontal = 0;
+
 CSpaceInvaderGame::CSpaceInvaderGame(cv::Size Canva_size, int comport) {
     control.init_com(comport);
+    
     _Canvas = cv::Mat::zeros(Canva_size, CV_8UC3);
 }
 void CSpaceInvaderGame::init() {
     CInvader e;
-    
-    
+    cv ::Mat Invader_image= cv::imread("images.png", cv::IMREAD_COLOR);
+    cv::resize(Invader_image, Invader_image, cv::Size(40, 40));
+   
     enemies.clear();
     for (int pos = 0; pos < 30; pos++)
     {
-        if (pos <10)
-        {         
-            position = cv::Point((30 + (pos%10) * 100), 100);
+        if (pos < 10)
+        {
+            position = cv::Point((30 + (pos % 10) * 100), 100);
             e.set_pos(position);
+            e.set_image(Invader_image);
+            e.set_shape();
         }
         else if (pos >= 10 && pos < 20)
         {
             position = cv::Point((30 + (pos%10) * 100), 150);
             e.set_pos(position);
+            e.set_image(Invader_image);
+            e.set_shape();
         }
         else if (pos >= 20 && pos < 30)
         {
             position = cv::Point((30 + (pos % 10) * 100), 200);
             e.set_pos(position);
+            e.set_image(Invader_image);
+            e.set_shape();
         }
         enemies.push_back(e);
     }
@@ -95,7 +104,13 @@ void CSpaceInvaderGame::run() {
 /////   Draw Function
 ////////////////////////////////////////////
 void CSpaceInvaderGame::draw() {
-   
+    cv::Mat background = cv::imread("background.jpg", cv::IMREAD_COLOR);
+    cv::resize(background, background, _Canvas.size());
+    background.copyTo(_Canvas);
+    cv::Mat ship_image = cv::imread("shipimage.jpg", cv::IMREAD_COLOR);
+    cv::resize(ship_image, ship_image, cv::Size(40, 40));
+    S.set_image(ship_image);
+    //S.set_shape();
     // GUI Menu
     //auto end_time = std::chrono::steady_clock::now() + std::chrono::duration<double, std::milli>(1000 / FPS_SP);
     std::string scoreText = std::to_string(score);
@@ -143,18 +158,23 @@ void CSpaceInvaderGame::draw() {
         vel.x = -5;
         vel.y = 0;
         S.move(vel);
+        //S.set_shape();
     }
     else if (_ship_position_percentage > 0.6 && (position.x + ship_size) <= _Canvas.cols)
     {
         vel.x = 5;
         vel.y = 0;
         S.move(vel);
+        //S.set_image(ship_image);
+        //S.set_shape();
     }
     else
     {
         vel.x = 0;
         vel.y = 0;
         S.move(vel);
+        //S.set_image(ship_image);
+        //S.set_shape();
     }
    
         S.draw(_Canvas);
@@ -270,6 +290,7 @@ void CSpaceInvaderGame::update()
         vel.y = 0;
         for (auto& e : enemies) {
             e.move(vel);
+            e.set_shape();
         }
     }
     if (moving == 2)
@@ -278,6 +299,7 @@ void CSpaceInvaderGame::update()
         vel.y = 0;
         for (auto& e : enemies) {
             e.move(vel);
+            e.set_shape();
         }
     }
     if (moving == 1)
@@ -286,6 +308,7 @@ void CSpaceInvaderGame::update()
         vel.y = 5;
         for (auto& e : enemies) {
             e.move(vel);
+            e.set_shape();
         }
         if (moving_temp == 0)
             position.x = _Canvas.size().width + 5;

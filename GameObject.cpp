@@ -3,16 +3,17 @@
 
 
 void CGameObject::draw(cv::Mat& im) {
-    cv::Rect object(
-        _position.x,
-        _position.y,
-        _shape.width,
-        _shape.height
-    );
-	cv::rectangle(im, object, cv::Scalar(255, 255, 255), 4, 8, 0);
     
+        cv::Rect object(
+            _position.x,
+            _position.y,
+            _shape.width,
+            _shape.height
+        );
+        cv::rectangle(im, object, cv::Scalar(255, 255, 255), 4, 8, 0);
     
-   // _Invader_image.copyTo(im(_shape));
+        if (_Invader_image.empty()) return;
+    _Invader_image.copyTo(im(_shape));
 }
 void CGameObject::move(cv:: Point2f _velocity) {
     _position.x += 2*_velocity.x;
@@ -42,4 +43,8 @@ bool CGameObject::collide(CGameObject& obj)
 void CGameObject::hit()
 {
     _lives -= 1;
+}
+void CGameObject::set_shape() {
+    if (_Invader_image.empty()) return;
+   _shape = cv::Rect(_position.x, _position.y, _Invader_image.cols, _Invader_image.rows);
 }
